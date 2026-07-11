@@ -1,0 +1,67 @@
+# ==========================================================
+# CAMEAL - Core Requirements
+# Context-Aware Adaptation, Monitoring, Evaluation,
+# Accountability and Learning
+# ==========================================================
+
+# ---------- Core ----------
+numpy>=2.0
+pandas>=2.2
+scipy>=1.14
+pyyaml>=6.0
+pydantic>=2.8
+python-dotenv>=1.0
+requests>=2.32
+httpx>=0.28
+
+# ---------- Machine Learning ----------
+scikit-learn>=1.5
+joblib>=1.4
+
+# ---------- AI / LLM ----------
+transformers>=4.53
+sentence-transformers>=3.0
+torch>=2.5
+accelerate>=1.0
+safetensors>=0.4
+
+# ---------- Retrieval ----------
+faiss-cpu>=1.8
+rank-bm25>=0.2
+
+# ---------- Vector & Knowledge ----------
+networkx>=3.3
+
+# ---------- Database ----------
+sqlalchemy>=2.0
+
+# ---------- API ----------
+fastapi>=0.116
+uvicorn>=0.35
+
+# ---------- Configuration ----------
+rich>=13.7
+loguru>=0.7
+tqdm>=4.67
+
+# ---------- Testing ----------
+pytest>=8.3
+pytest-cov>=6.0
+
+# ---------- Formatting ----------
+black>=25.0
+ruff>=0.6
+
+# ==========================================================
+# Optional packages (install separately if required)
+# ----------------------------------------------------------
+# geopandas
+# rasterio
+# xarray
+# ollama
+# chromadb
+# matplotlib
+# plotly
+# streamlit
+# jupyter
+# ==========================================================

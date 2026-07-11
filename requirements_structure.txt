@@ -1,0 +1,10 @@
+requirements/
+│
+├── base.txt          # Core framework
+├── ai.txt            # LLMs & embeddings
+├── climate.txt       # Earth observation
+├── dev.txt           # Development tools
+├── docs.txt          # Documentation
+├── api.txt           # FastAPI services
+├── dashboard.txt     # Streamlit/Dash
+└── full.txt          # Includes everything

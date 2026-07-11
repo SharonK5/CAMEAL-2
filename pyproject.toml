@@ -1,0 +1,116 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cameal"
+version = "0.1.0"
+description = "CAMEAL: A Reference Architecture for Trustworthy AI-Enabled Decision Support Systems."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+
+authors = [
+    { name = "Sharon Rhodah Kaitano", email = "Sharon@tsmconsultants.com" }
+]
+
+maintainers = [
+    { name = "Sharon Rhodah Kaitano", email = "Sharon@tsmconsultants.com" }
+]
+
+keywords = [
+    "AI",
+    "Responsible AI",
+    "Machine Learning",
+    "Decision Support",
+    "Governance",
+    "Climate",
+    "Earth Observation",
+    "Knowledge Graph",
+    "Monitoring",
+    "Evaluation",
+    "Accountability",
+    "Learning"
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering",
+]
+
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
+    "networkx>=3.3",
+    "pydantic>=2.8",
+    "pyyaml>=6.0",
+    "requests>=2.32",
+    "sqlalchemy>=2.0",
+    "rich>=13.7",
+    "loguru>=0.7",
+]
+
+[project.optional-dependencies]
+
+ai = [
+    "transformers>=4.53",
+    "sentence-transformers>=3.0",
+    "torch>=2.5",
+    "accelerate>=1.0",
+]
+
+rag = [
+    "faiss-cpu>=1.8",
+    "rank-bm25>=0.2",
+]
+
+geo = [
+    "geopandas>=1.0",
+    "rasterio>=1.4",
+    "xarray>=2025.1",
+]
+
+api = [
+    "fastapi>=0.116",
+    "uvicorn>=0.35",
+]
+
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "black>=25.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[project.urls]
+Homepage = "https://github.com/TSM-Consultants/CAMEAL"
+Documentation = "https://github.com/TSM-Consultants/CAMEAL/docs"
+Repository = "https://github.com/TSM-Consultants/CAMEAL"
+Issues = "https://github.com/TSM-Consultants/CAMEAL/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cameal*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
