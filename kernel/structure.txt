@@ -1,0 +1,11 @@
+kernel/
+├── __init__.py
+├── version.py
+├── exceptions.py
+├── registry.py
+├── state_manager.py
+├── event_bus.py
+├── lifecycle.py
+├── router.py
+├── orchestrator.py
+└── cameal_kernel.py
