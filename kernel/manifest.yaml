@@ -1,0 +1,35 @@
+version: 1.0
+
+components:
+
+    repository:
+
+        enabled: true
+
+    analytics:
+
+        enabled: true
+
+    governance:
+
+        enabled: true
+
+    ai:
+
+        enabled: true
+
+    drafting:
+
+        enabled: true
+
+startup:
+
+    - repository
+
+    - analytics
+
+    - governance
+
+    - ai
+
+    - drafting

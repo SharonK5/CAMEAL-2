@@ -1,0 +1,15 @@
+search:
+
+    authentication: false
+
+draft:
+
+    authentication: true
+
+governance:
+
+    authentication: true
+
+admin:
+
+    role: administrator

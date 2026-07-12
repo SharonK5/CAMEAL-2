@@ -1,0 +1,363 @@
+Metadata-Version: 2.4
+Name: cameal
+Version: 1.0.0a0
+Summary: CAMEAL: A Reference Architecture for Trustworthy AI-Enabled Decision Support Systems.
+Author-email: Sharon Rhodah Kaitano <Sharon@tsmconsultants.com>
+Maintainer-email: Sharon Rhodah Kaitano <Sharon@tsmconsultants.com>
+License: # CAMEAL License
+        
+        **Copyright © 2026 Sharon Rhodah Kaitano and Trajectory Strategy & Management (TSM) Consultants. All Rights Reserved.**
+        
+        ## Ownership
+        
+        The CAMEAL (Context-Aware Adaptation, Monitoring, Evaluation, Accountability, and Learning) Framework, Reference Architecture, Kernel Design, Documentation, Software, Models, Workflows, and all associated materials are the intellectual property of **Sharon Rhodah Kaitano** and **Trajectory Strategy & Management (TSM) Consultants**, unless otherwise stated.
+        
+        ## Permitted Use
+        
+        Permission is granted to:
+        
+        * View and study the repository.
+        * Use the architecture for academic research and educational purposes.
+        * Cite CAMEAL in scholarly publications with appropriate attribution.
+        * Evaluate the framework for non-commercial research.
+        
+        ## Restrictions
+        
+        Without prior written permission from the copyright holders, users may not:
+        
+        * Commercialize any part of CAMEAL.
+        * Redistribute modified versions as another framework.
+        * Remove copyright notices.
+        * Incorporate the architecture into commercial software or services.
+        * Claim authorship of the framework or its components.
+        
+        ## Contributions
+        
+        External contributions may be accepted through pull requests. Submission of a contribution does not transfer ownership of the CAMEAL intellectual property. Accepted contributions become part of the project under this license unless otherwise agreed in writing.
+        
+        ## Disclaimer
+        
+        The software and documentation are provided "as is" without warranty of any kind, express or implied. The authors and copyright holders shall not be liable for any claim, damages, or other liability arising from the use of the framework.
+        
+        ## Commercial Licensing
+        
+        Organizations wishing to deploy, integrate, modify, or commercialize CAMEAL should contact:
+        
+        **Trajectory Strategy & Management (TSM) Consultants**
+        Email: [Sharon@tsmconsultants.com](mailto:Sharon@tsmconsultants.com)
+        
+        Commercial licensing arrangements are available separately.
+        
+        ---
+        
+        **Copyright © 2026 Sharon Rhodah Kaitano & Trajectory Strategy & Management (TSM) Consultants. All Rights Reserved.**
+        
+Project-URL: Homepage, https://github.com/SharonK5/CAMEAL-2
+Project-URL: Documentation, https://github.com/SharonK5/CAMEAL-2/docs
+Project-URL: Repository, https://github.com/SharonK5/CAMEAL-2
+Project-URL: Issues, https://github.com/SharonK5/CAMEAL-2/issues
+Keywords: AI,Responsible AI,Machine Learning,Decision Support,Governance,Climate,Earth Observation,Knowledge Graph,Monitoring,Evaluation,Accountability,Learning
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=2.0
+Requires-Dist: pandas>=2.2
+Requires-Dist: scikit-learn>=1.5
+Requires-Dist: networkx>=3.3
+Requires-Dist: pydantic>=2.8
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: requests>=2.32
+Requires-Dist: sqlalchemy>=2.0
+Requires-Dist: rich>=13.7
+Requires-Dist: loguru>=0.7
+Provides-Extra: ai
+Requires-Dist: transformers>=4.53; extra == "ai"
+Requires-Dist: sentence-transformers>=3.0; extra == "ai"
+Requires-Dist: torch>=2.5; extra == "ai"
+Requires-Dist: accelerate>=1.0; extra == "ai"
+Provides-Extra: rag
+Requires-Dist: faiss-cpu>=1.8; extra == "rag"
+Requires-Dist: rank-bm25>=0.2; extra == "rag"
+Provides-Extra: geo
+Requires-Dist: geopandas>=1.0; extra == "geo"
+Requires-Dist: rasterio>=1.4; extra == "geo"
+Requires-Dist: xarray>=2025.1; extra == "geo"
+Provides-Extra: api
+Requires-Dist: fastapi>=0.116; extra == "api"
+Requires-Dist: uvicorn>=0.35; extra == "api"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: pytest-cov>=6.0; extra == "dev"
+Requires-Dist: black>=25.0; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"
+Requires-Dist: mypy>=1.11; extra == "dev"
+Requires-Dist: isort>=5.13; extra == "dev"
+Requires-Dist: pre-commit>=3.7; extra == "dev"
+Dynamic: license-file
+
+# CAMEAL
+
+## Context-Aware Adaptation, Monitoring, Evaluation, Accountability and Learning
+
+**A Reference Architecture for Trustworthy AI-Enabled Decision Support Systems**
+
+---
+
+## Overview
+
+CAMEAL is a governance-first reference architecture designed to support trustworthy Artificial Intelligence (AI)-enabled decision-making. It integrates trusted evidence management, machine learning, AI-assisted reasoning, intelligent drafting, and continuous governance to strengthen evidence-based decisions in complex environments.
+
+Unlike conventional AI systems that focus solely on generating predictions or recommendations, CAMEAL embeds governance throughout the decision lifecycle using five core capabilities:
+
+* **Context-Aware Decision Support**
+* **Continuous Monitoring**
+* **Evaluation and Validation**
+* **Accountability and Explainability**
+* **Learning and Adaptation**
+
+The architecture supports both **offline** and **online** deployments, making it suitable for secure environments, low-connectivity regions, and cloud-enabled implementations.
+
+---
+
+# Vision
+
+To provide a reusable reference architecture that enables organizations to build trustworthy, transparent, explainable, and adaptive AI-enabled decision support systems.
+
+---
+
+# Mission
+
+To strengthen evidence-based decision-making through responsible AI, machine learning, governance, and continuous organizational learning.
+
+---
+
+# Core Components
+
+The CAMEAL architecture consists of five integrated capabilities:
+
+### 1. Trusted Evidence Repository
+
+Stores and manages:
+
+* Policy documents
+* Research publications
+* Climate data
+* Operational datasets
+* Institutional knowledge
+* Metadata and knowledge graphs
+
+---
+
+### 2. Machine Learning Predictive Sandbox
+
+Supports:
+
+* Forecasting
+* Risk prediction
+* Scenario analysis
+* Classification
+* Anomaly detection
+* Model experimentation
+
+---
+
+### 3. AI-Assisted Decision Support
+
+Provides:
+
+* Evidence retrieval
+* Recommendation generation
+* External evidence discovery
+* Explainable reasoning
+* Intelligent drafting
+* Citation support
+
+---
+
+### 4. CAMEAL Governance Layer
+
+Implements:
+
+* Context Awareness
+* Monitoring
+* Evaluation
+* Accountability
+* Learning
+* Adaptation
+* Human-in-the-Loop governance
+
+---
+
+### 5. Decision Support Services
+
+Produces:
+
+* Policy briefs
+* Climate assessments
+* Situation reports
+* Decision recommendations
+* Monitoring reports
+* Evaluation reports
+
+---
+
+# Architecture
+
+```
+Evidence Repository
+        │
+        ▼
+Machine Learning
+        │
+        ▼
+AI Decision Support
+        │
+        ▼
+CAMEAL Governance
+        │
+        ▼
+Decision Outputs
+        │
+        ▼
+Learning & Continuous Improvement
+```
+
+Every component communicates through the **CAMEAL Kernel**, which governs system behaviour using an event-driven architecture.
+
+---
+
+# Key Features
+
+* Governance-by-design
+* Responsible AI
+* Explainable AI
+* Human-in-the-loop oversight
+* Hybrid offline/online deployment
+* Modular plugin architecture
+* Multi-domain support
+* Continuous learning
+* Adaptive decision support
+* Trusted evidence management
+
+---
+
+# Example Application Domains
+
+CAMEAL can be applied to:
+
+* Climate resilience
+* Agriculture
+* Disaster risk reduction
+* Public health
+* Biodiversity
+* Environmental management
+* Digital government
+* Development planning
+* Research management
+* Enterprise governance
+
+---
+
+# Repository Structure
+
+```
+kernel/
+context/
+governance/
+repository/
+ml/
+ai/
+decision_support/
+climate/
+plugins/
+security/
+storage/
+reports/
+interfaces/
+integrations/
+docs/
+tests/
+examples/
+```
+
+---
+
+# Design Principles
+
+CAMEAL is built upon the following principles:
+
+* Trustworthiness
+* Transparency
+* Explainability
+* Accountability
+* Human oversight
+* Adaptability
+* Evidence-first reasoning
+* Continuous learning
+* Interoperability
+* Scalability
+
+---
+
+# Deployment
+
+The architecture supports:
+
+**Offline Deployment**
+
+* Local AI models
+* Local repositories
+* Local databases
+* Secure institutional environments
+
+**Online Deployment**
+
+* Cloud services
+* External knowledge discovery
+* Earth Observation APIs
+* Collaborative knowledge sharing
+
+---
+
+# Research Contribution
+
+CAMEAL is a **reference architecture**, not simply an AI application. It contributes a governance-oriented framework that integrates trusted evidence, predictive analytics, AI-assisted decision support, and adaptive governance into a reusable architecture for trustworthy AI systems.
+
+---
+
+# Future Roadmap
+
+* Operational Governance
+* Multi-agent orchestration
+* Digital twins
+* Federated learning
+* Knowledge graph reasoning
+* Advanced Earth Observation integration
+* Cross-border climate intelligence
+* Enterprise governance services
+
+---
+
+# License
+
+Specify your preferred open-source or proprietary license.
+
+---
+
+# Author
+
+**Sharon Rhodah Kaitano**
+
+Founder & Chief Executive Officer
+Trajectory Strategy & Management (TSM) Consultants
+
+**CAMEAL – Building Trustworthy AI for Better Decisions.**

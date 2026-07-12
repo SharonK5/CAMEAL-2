@@ -1,0 +1,9 @@
+search_pipeline:
+
+    - retrieval
+
+    - analytics
+
+    - governance
+
+    - ai

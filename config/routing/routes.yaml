@@ -1,0 +1,7 @@
+search:
+
+    component: retrieval
+
+    workflow: search_pipeline
+
+    priority: 20

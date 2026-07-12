@@ -1,0 +1,11 @@
+predictive:
+
+    confidence: 0.70
+
+prescriptive:
+
+    confidence: 0.85
+
+critical:
+
+    human_review: true

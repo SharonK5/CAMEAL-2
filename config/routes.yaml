@@ -1,0 +1,76 @@
+version: 1.0
+
+routes:
+
+  search:
+    component: retrieval
+    workflow: search_pipeline
+    priority: 10
+    policies:
+      - public_access
+      - evidence_logging
+
+  semantic_search:
+    component: retrieval
+    workflow: semantic_pipeline
+    priority: 10
+    policies:
+      - public_access
+      - evidence_logging
+
+  descriptive:
+    component: analytics
+    workflow: analytics_pipeline
+    priority: 20
+    policies:
+      - public_access
+      - evidence_logging
+
+  diagnostic:
+    component: analytics
+    workflow: analytics_pipeline
+    priority: 20
+    policies:
+      - public_access
+      - evidence_logging
+
+  gap:
+    component: analytics
+    workflow: analytics_pipeline
+    priority: 20
+    policies:
+      - governance_required
+      - evidence_logging
+
+  predictive:
+    component: analytics
+    workflow: predictive_pipeline
+    priority: 30
+    policies:
+      - governance_required
+      - evidence_logging
+
+  prescriptive:
+    component: governance
+    workflow: decision_pipeline
+    priority: 40
+    policies:
+      - authenticated_user
+      - human_review
+      - accountability_logging
+
+  draft:
+    component: drafting
+    workflow: drafting_pipeline
+    priority: 50
+    policies:
+      - authenticated_user
+      - evidence_logging
+
+default:
+  component: ai
+  workflow: default_pipeline
+  priority: 100
+  policies:
+    - public_access
+    - evidence_logging

@@ -1,0 +1,8 @@
+LICENSE
+README.md
+pyproject.toml
+cameal.egg-info/PKG-INFO
+cameal.egg-info/SOURCES.txt
+cameal.egg-info/dependency_links.txt
+cameal.egg-info/requires.txt
+cameal.egg-info/top_level.txt

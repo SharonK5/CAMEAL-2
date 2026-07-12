@@ -22,8 +22,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from .registry import registry
 from .base import KernelComponent
+from .registry import registry
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ class LifecycleManager:
 
         for name in registry.list_services():
 
-            component: KernelComponent = registry.get(name)
+            component: KernelComponent = registry.resolve(name)
 
             if not component.initialized:
 
@@ -65,7 +65,7 @@ class LifecycleManager:
 
         for name in reversed(services):
 
-            component: KernelComponent = registry.get(name)
+            component: KernelComponent = registry.resolve(name)
 
             logger.info("Stopping %s", name)
 
@@ -82,7 +82,7 @@ class LifecycleManager:
 
         for name in registry.list_services():
 
-            component: KernelComponent = registry.get(name)
+            component: KernelComponent = registry.resolve(name)
 
             component.reset()
 
@@ -97,9 +97,9 @@ class LifecycleManager:
 
         for name in registry.list_services():
 
-            component: KernelComponent = registry.get(name)
+            component: KernelComponent = registry.resolve(name)
 
-            report[name] = component.health()
+            report[component.name] = component.health()
 
         return report
 

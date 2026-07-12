@@ -1,30 +1,45 @@
 """
-kernel.base
-===========
+===============================================================================
+Module: kernel.base
 
-Base classes for all CAMEAL kernel components.
+Abstract base class for all executable CAMEAL kernel components.
 
-Every major subsystem (Repository, Analytics, ML, AI, Drafting,
-Governance, Security, Storage, etc.) should inherit from
-KernelComponent.
+Responsibilities:
+    - Define the common lifecycle.
+    - Define the common execution interface.
+    - Provide health reporting.
 
-This ensures a consistent lifecycle across the platform.
+Author: Sharon Kaitano
+Project: CAMEAL
+License: MIT
+===============================================================================
 """
 
 from __future__ import annotations
 
+# =============================================================================
+# Standard Library Imports
+# =============================================================================
 import logging
 from abc import ABC, abstractmethod
 from typing import Any
+
+# =============================================================================
+# Local Imports
+# =============================================================================
+from .request import Request
+from .response import Response
+
+# =============================================================================
+# Module Constants
+# =============================================================================
 
 logger = logging.getLogger(__name__)
 
 
 class KernelComponent(ABC):
     """
-    Abstract base class for all CAMEAL components.
-
-    Every component must implement the same lifecycle methods.
+    Base class for every executable kernel component.
     """
 
     def __init__(self, name: str) -> None:
@@ -33,40 +48,32 @@ class KernelComponent(ABC):
 
     @property
     def name(self) -> str:
-        """Return component name."""
         return self._name
 
     @property
     def initialized(self) -> bool:
-        """Return initialization status."""
         return self._initialized
 
     @abstractmethod
     def initialize(self) -> None:
-        """
-        Initialize the component.
-        """
         ...
 
     @abstractmethod
     def shutdown(self) -> None:
-        """
-        Gracefully stop the component.
-        """
         ...
 
     @abstractmethod
     def reset(self) -> None:
-        """
-        Reset runtime state.
-        """
         ...
 
     @abstractmethod
+    def execute(self, request: Request) -> Response:
+        """
+        Execute a kernel request.
+        """
+
+    @abstractmethod
     def health(self) -> dict[str, Any]:
-        """
-        Return health information.
-        """
         ...
 
     def __repr__(self) -> str:

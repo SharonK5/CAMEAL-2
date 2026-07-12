@@ -24,8 +24,9 @@ from __future__ import annotations
 
 import logging
 from collections import defaultdict
+from collections.abc import Callable
 from threading import RLock
-from typing import Any, Callable, DefaultDict
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +40,7 @@ class EventBus:
 
     def __init__(self) -> None:
         self._lock = RLock()
-        self._subscribers: DefaultDict[str, list[EventHandler]] = defaultdict(list)
+        self._subscribers: defaultdict[str, list[EventHandler]] = defaultdict(list)
         self._published_events = 0
 
     def subscribe(self, event: str, handler: EventHandler) -> None:
