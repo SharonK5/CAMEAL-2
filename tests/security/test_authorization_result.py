@@ -1,27 +1,23 @@
-"""
-===============================================================================
-Unit tests for security.authorization_result
-===============================================================================
-"""
-
 from security.authorization_result import AuthorizationResult
 
 
 def test_success():
-    """Test that a successful authorization result can be created with allowed=True."""
+
     result = AuthorizationResult(
-        allowed=True,
+        success=True,
         message="Allowed",
     )
-    assert result.allowed is True
+
+    assert result.success
     assert result.message == "Allowed"
 
 
 def test_failure():
-    """Test that a failed authorization result can be created with allowed=False."""
+
     result = AuthorizationResult(
-        allowed=False,
+        success=False,
         message="Denied",
     )
-    assert result.allowed is False
+
+    assert not result.success
     assert result.message == "Denied"

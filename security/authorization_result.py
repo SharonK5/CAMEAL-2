@@ -1,20 +1,26 @@
-from dataclasses import dataclass
-from typing import Optional
+"""
+===============================================================================
+Module: security.authorization_result
 
-from .permissions import Permission
-from .user import User
+Authorization result.
+
+Author: Sharon Kaitano
+Project: CAMEAL
+License: MIT
+===============================================================================
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
 
 
 @dataclass(slots=True, frozen=True)
 class AuthorizationResult:
     """
-    Result of an authorization decision.
+    Authorization outcome.
     """
 
-    allowed: bool
-
-    user: Optional[User] = None
-
-    permission: Optional[Permission] = None
+    success: bool
 
     message: str = ""

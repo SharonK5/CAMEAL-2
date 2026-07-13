@@ -1,1 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+
+# pytest
+.pytest_cache/
+
+# coverage
+.coverage
+htmlcov/
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Environment
 .env
+
+# Jupyter
+.ipynb_checkpoints/
