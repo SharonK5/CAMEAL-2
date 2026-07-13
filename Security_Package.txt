@@ -1,0 +1,18 @@
+CAMEAL/
+│
+├── security/
+│   ├── __init__.py
+│   ├── authenticator.py
+│   ├── authorization.py
+│   ├── roles.py
+│   ├── user.py
+│   ├── sessions.py
+│   ├── hashing.py
+│   ├── audit.py
+│   ├── middleware.py
+│   ├── exceptions.py
+│   ├── permissions.py
+│   └── version.py
+│
+└── tests/
+    └── security/
