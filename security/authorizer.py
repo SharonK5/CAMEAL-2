@@ -1,115 +1,38 @@
-"""
-===============================================================================
-Module: security.authorizer
-
-Role-Based Authorization Service for CAMEAL.
-
-Responsibilities
-----------------
-- Evaluate authorization requests.
-- Map roles to permissions.
-- Produce AuthorizationResult.
-- Remain stateless.
-
-Author: Sharon Kaitano
-Project: CAMEAL
-License: MIT
-===============================================================================
-"""
+# security/authorizer.py
 
 from __future__ import annotations
 
 from .authorization_request import AuthorizationRequest
 from .authorization_result import AuthorizationResult
-from .permissions import Permission
-from .roles import Role
+from .role_permission_provider import RolePermissionProvider
 
 
 class Authorizer:
     """
-    Stateless RBAC authorization service.
+    Stateless RBAC authorization service using a pluggable permission provider.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, provider: RolePermissionProvider) -> None:
+        self._provider = provider
 
-        self._role_permissions: dict[Role, set[Permission]] = {
-
-            Role.SYSTEM_ADMIN: set(Permission),
-
-            Role.AI_ADMINISTRATOR: {
-                Permission.READ,
-                Permission.WRITE,
-                Permission.QUERY,
-                Permission.ANALYZE,
-                Permission.CONFIGURE,
-                Permission.REVIEW,
-            },
-
-            Role.GOVERNANCE_OFFICER: {
-                Permission.READ,
-                Permission.WRITE,
-                Permission.REVIEW,
-                Permission.GOVERN,
-                Permission.QUERY,
-            },
-
-            Role.RESEARCHER: {
-                Permission.READ,
-                Permission.QUERY,
-                Permission.ANALYZE,
-                Permission.EXPORT,
-            },
-
-            Role.ANALYST: {
-                Permission.READ,
-                Permission.QUERY,
-                Permission.ANALYZE,
-            },
-
-            Role.OPERATOR: {
-                Permission.READ,
-                Permission.WRITE,
-                Permission.INGEST,
-            },
-
-            Role.API_CLIENT: {
-                Permission.READ,
-                Permission.QUERY,
-            },
-
-            Role.REVIEWER: {
-                Permission.READ,
-                Permission.REVIEW,
-            },
-
-            Role.GUEST: {
-                Permission.READ,
-            },
-        }
-
-    def authorize(
-        self,
-        request: AuthorizationRequest,
-    ) -> AuthorizationResult:
-
+    def authorize(self, request: AuthorizationRequest) -> AuthorizationResult:
+        # 1. Check if the user is active
         if not request.user.active:
-
             return AuthorizationResult(
                 success=False,
                 message="User account is inactive.",
             )
 
+        # 2. Try each role the user has
         for role in request.user.roles:
-
-            permissions = self._role_permissions.get(role, set())
-
+            permissions = self._provider.permissions_for(role)
             if request.permission in permissions:
-
                 return AuthorizationResult(
                     success=True,
                     message="Authorization granted.",
                 )
 
+        # 3. No matching role granted the required permission
         return AuthorizationResult(
             success=False,
             message="Permission denied.",

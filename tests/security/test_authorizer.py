@@ -6,9 +6,20 @@ Integration tests for security.authorizer
 
 from security.authorizer import Authorizer
 from security.authorization_request import AuthorizationRequest
+from security.default_role_permission_provider import (
+    DefaultRolePermissionProvider,
+)
 from security.permissions import Permission
 from security.roles import Role
 from security.user import User
+
+
+def create_authorizer() -> Authorizer:
+    """
+    Create an authorizer backed by the default RBAC provider.
+    """
+    provider = DefaultRolePermissionProvider()
+    return Authorizer(provider)
 
 
 def test_system_admin_allowed():
@@ -23,7 +34,7 @@ def test_system_admin_allowed():
         permission=Permission.DELETE,
     )
 
-    result = Authorizer().authorize(request)
+    result = create_authorizer().authorize(request)
 
     assert result.success
 
@@ -40,7 +51,7 @@ def test_researcher_allowed():
         permission=Permission.ANALYZE,
     )
 
-    result = Authorizer().authorize(request)
+    result = create_authorizer().authorize(request)
 
     assert result.success
 
@@ -57,7 +68,7 @@ def test_guest_denied_delete():
         permission=Permission.DELETE,
     )
 
-    result = Authorizer().authorize(request)
+    result = create_authorizer().authorize(request)
 
     assert not result.success
 
@@ -74,7 +85,7 @@ def test_api_client_denied_configure():
         permission=Permission.CONFIGURE,
     )
 
-    result = Authorizer().authorize(request)
+    result = create_authorizer().authorize(request)
 
     assert not result.success
 
@@ -92,6 +103,6 @@ def test_inactive_user_denied():
         permission=Permission.ADMIN,
     )
 
-    result = Authorizer().authorize(request)
+    result = create_authorizer().authorize(request)
 
     assert not result.success
