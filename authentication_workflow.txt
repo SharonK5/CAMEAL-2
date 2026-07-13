@@ -1,0 +1,19 @@
+AuthenticationRequest
+        │
+        ▼
+Identity Provider
+        │
+        ▼
+IdentityRecord
+        │
+        ▼
+Verify Password
+        │
+        ▼
+Account Enabled?
+        │
+        ▼
+Account Locked?
+        │
+        ▼
+Update
