@@ -1,0 +1,28 @@
+Phase 2 — Security
+────────────────────────────
+
+Foundation
+✓ Roles
+✓ Permissions
+✓ User
+✓ Password Hashing
+✓ Exceptions
+✓ Audit Event
+
+Identity
+□ Identity Record
+□ Identity Provider
+□ Memory Identity Provider
+
+Authentication
+□ Authenticator
+
+Sessions
+□ Session
+□ Session Manager
+
+Authorization
+□ Authorization Service
+
+Integration
+□ Security Middleware
