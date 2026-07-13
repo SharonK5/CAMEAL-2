@@ -1,0 +1,16 @@
+tests/
+│
+├── __init__.py
+├── conftest.py
+│
+└── kernel/
+    ├── __init__.py
+    ├── test_request.py
+    ├── test_response.py
+    ├── test_route.py
+    ├── test_registry.py
+    ├── test_validators.py
+    ├── test_event_bus.py
+    ├── test_state_manager.py
+    ├── test_lifecycle.py
+    └── test_router.py

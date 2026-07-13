@@ -40,19 +40,22 @@ class Router:
         self.load(route_file)
 
     def load(self, route_file: Path) -> None:
-
-        with open(route_file, encoding="utf-8") as stream:
-
-            config = yaml.safe_load(stream)
+        """
+        Load route configuration from a YAML file.
+        """
+        config = yaml.safe_load(
+            route_file.read_text(encoding="utf-8")
+        )
 
         self._routes = config["routes"]
-
         self._default = config["default"]
 
         logger.info("Loaded %d routes.", len(self._routes))
 
     def resolve(self, request: Request) -> Route:
-
+        """
+        Resolve a Request to a Route based on its action.
+        """
         self._validator.validate(request)
 
         config = self._routes.get(
@@ -76,12 +79,18 @@ class Router:
         )
 
     def reload(self, route_file: Path) -> None:
-
+        """
+        Reload the route configuration from a file.
+        """
         self.load(route_file)
 
     def health(self) -> dict:
-
+        """
+        Return health and status information about the router.
+        """
         return {
             "status": "healthy",
-            "routes": len(self._routes),
+            "routes_loaded": len(self._routes),
+            "default_route": self._default.get("component"),
+            "validator": self._validator.__class__.__name__,
         }

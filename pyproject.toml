@@ -134,4 +134,7 @@ ignore = ["E501"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "--cov=kernel --cov-report=term-missing"
+addopts = "-ra"
+filterwarnings = [
+    "ignore::DeprecationWarning"
+]
