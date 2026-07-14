@@ -6,7 +6,7 @@ Tests for security.risk_engine
 """
 
 from security.authorization_request import AuthorizationRequest
-from security.context import GovernanceContext  # <-- changed from Context
+from context.context import GovernanceContext  # <-- changed from Context
 from security.permissions import Permission
 from security.policy import Policy
 from security.risk_engine import RiskEngine
@@ -42,11 +42,13 @@ def make_context(**kwargs):
 
 
 def make_policy():
+    # Fixed: policy_id was removed, roles must be provided (empty frozenset is fine)
     return Policy(
-        policy_id="p1",
         name="Default",
         description="Default policy",
+        roles=frozenset(),                     # no roles needed for these tests
         permissions=frozenset({Permission.READ}),
+        # enabled defaults to True, so we omit it
     )
 
 

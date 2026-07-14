@@ -1,12 +1,13 @@
 """
 ===============================================================================
-Module: security.context
+Module: context.context
 
-Immutable governance context.
+Canonical CAMEAL Context.
 
-Provides environmental information used when making governance
-decisions. This class intentionally remains independent of any
-specific security, AI, or workflow implementation.
+Provides the immutable operational context shared across the CAMEAL
+framework. The context captures the dimensions that influence
+governance, adaptation, monitoring, evaluation, accountability,
+learning, and decision-making.
 
 Author: Sharon Kaitano
 Project: CAMEAL
@@ -24,14 +25,61 @@ from typing import Any, Mapping
 @dataclass(slots=True, frozen=True)
 class GovernanceContext:
     """
-    Immutable governance context.
+    Immutable CAMEAL governance context.
 
-    Captures the environment surrounding a governance decision.
+    The context captures four primary dimensions:
+
+    - Institutional
+    - Jurisdictional
+    - Spatial
+    - Temporal
+
+    Additional metadata may be attached without modifying the class.
     """
+
+    # ------------------------------------------------------------------
+    # Institutional Dimension
+    # ------------------------------------------------------------------
+
+    institution: str | None = None
+
+    department: str | None = None
+
+    programme: str | None = None
+
+    # ------------------------------------------------------------------
+    # Jurisdictional Dimension
+    # ------------------------------------------------------------------
 
     jurisdiction: str | None = None
 
-    institution: str | None = None
+    policy_domain: str | None = None
+
+    legal_framework: str | None = None
+
+    # ------------------------------------------------------------------
+    # Spatial Dimension
+    # ------------------------------------------------------------------
+
+    location: str | None = None
+
+    region: str | None = None
+
+    country: str | None = None
+
+    # ------------------------------------------------------------------
+    # Temporal Dimension
+    # ------------------------------------------------------------------
+
+    timestamp: datetime = field(
+        default_factory=lambda: datetime.now(UTC)
+    )
+
+    period: str | None = None
+
+    # ------------------------------------------------------------------
+    # Operational Context
+    # ------------------------------------------------------------------
 
     workflow: str | None = None
 
@@ -39,9 +87,9 @@ class GovernanceContext:
 
     emergency: bool = False
 
-    request_time: datetime = field(
-        default_factory=lambda: datetime.now(UTC)
-    )
+    # ------------------------------------------------------------------
+    # Extension Metadata
+    # ------------------------------------------------------------------
 
     metadata: Mapping[str, Any] = field(
         default_factory=dict
@@ -62,6 +110,6 @@ class GovernanceContext:
         key: str,
     ) -> bool:
         """
-        Return True if metadata contains the key.
+        Return True if metadata contains the given key.
         """
         return key in self.metadata

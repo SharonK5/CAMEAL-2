@@ -13,7 +13,7 @@ License: MIT
 from __future__ import annotations
 
 from .authorization_request import AuthorizationRequest
-from .context import Context
+from context.context import GovernanceContext
 from .policy import Policy
 from .risk_level import RiskLevel
 
@@ -27,7 +27,7 @@ class RiskEngine:
         self,
         request: AuthorizationRequest,
         policy: Policy | None,
-        context: Context,
+        context: GovernanceContext,   # fixed type hint
     ) -> RiskLevel:
         """
         Determine the governance risk for an authorization request.
@@ -46,7 +46,8 @@ class RiskEngine:
             return RiskLevel.HIGH
 
         # Sensitive contexts increase risk.
-        if getattr(context, "sensitivity", "").lower() == "high":
+        # Read sensitivity from metadata (safe if missing).
+        if str(context.get("sensitivity", "")).lower() == "high":
             return RiskLevel.HIGH
 
         # Default.

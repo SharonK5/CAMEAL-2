@@ -1,10 +1,10 @@
 """
 ===============================================================================
-Tests for security.context
+Tests for context.context
 ===============================================================================
 """
 
-from security.context import GovernanceContext
+from context.context import GovernanceContext
 
 
 def test_defaults():
