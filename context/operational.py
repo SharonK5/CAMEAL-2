@@ -4,12 +4,7 @@ Module: context.operational
 
 Operational governance context.
 
-Represents the operational environment in which governance decisions,
-policies, workflows, monitoring activities, and AI services execute.
-
-Author: Sharon Kaitano
-Project: CAMEAL
-License: MIT
+Defines the operational conditions under which a decision is made.
 ===============================================================================
 """
 
@@ -22,92 +17,34 @@ from typing import Any, Mapping
 @dataclass(slots=True, frozen=True)
 class OperationalContext:
     """
-    Immutable operational governance context.
+    Operational conditions of a governance action.
     """
 
-    # -------------------------------------------------------------------------
-    # Identity
-    # -------------------------------------------------------------------------
-
     identifier: str | None = None
-
     name: str | None = None
-
-    # -------------------------------------------------------------------------
-    # Operating Environment
-    # -------------------------------------------------------------------------
-
     environment: str | None = None
-
-    # Development
-    # Testing
-    # Staging
-    # Production
-
     workflow: str | None = None
-
     workflow_stage: str | None = None
-
     process: str | None = None
-
     service: str | None = None
-
     operation: str | None = None
-
-    # -------------------------------------------------------------------------
-    # Technology
-    # -------------------------------------------------------------------------
-
     platform: str | None = None
-
     technology: str | None = None
-
     execution_mode: str | None = None
-
-    # Human
-    # AI
-    # Human-AI
-    # Autonomous
-
-    # -------------------------------------------------------------------------
-    # Operating State
-    # -------------------------------------------------------------------------
-
     status: str | None = None
-
     priority: str | None = None
-
     emergency: bool = False
-
     automated: bool = False
 
-    # -------------------------------------------------------------------------
-    # Metadata
-    # -------------------------------------------------------------------------
+    # Security‑critical field: classification of the operation
+    sensitivity: str | None = None
 
-    metadata: Mapping[str, Any] = field(
-        default_factory=dict
-    )
+    # Free‑form metadata (dict is fine – not used as a key)
+    metadata: Mapping[str, Any] = field(default_factory=dict)
 
-    # -------------------------------------------------------------------------
-    # Convenience
-    # -------------------------------------------------------------------------
-
-    def get(
-        self,
-        key: str,
-        default: Any = None,
-    ) -> Any:
-        """
-        Return metadata value.
-        """
+    # Convenience methods (matching GovernanceContext)
+    def get(self, key: str, default: Any = None) -> Any:
         return self.metadata.get(key, default)
 
-    def contains(
-        self,
-        key: str,
-    ) -> bool:
-        """
-        Return True if metadata contains key.
-        """
+    def contains(self, key: str) -> bool:
         return key in self.metadata
