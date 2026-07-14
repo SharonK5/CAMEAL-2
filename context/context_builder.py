@@ -75,18 +75,28 @@ class ContextBuilder:
         return self
 
     # ------------------------------------------------------------------
-    # Build
+    # Build – now supports direct arguments (overrides stored values)
     # ------------------------------------------------------------------
 
-    def build(self) -> GovernanceContext:
+    def build(
+        self,
+        institutional: InstitutionalContext | None = None,
+        jurisdictional: JurisdictionalContext | None = None,
+        spatial: SpatialContext | None = None,
+        temporal: TemporalContext | None = None,
+        operational: OperationalContext | None = None,
+    ) -> GovernanceContext:
         """
         Build an immutable GovernanceContext.
-        """
 
+        If keyword arguments are supplied, they take precedence over
+        any previously added via the fluent setters.
+        """
         return GovernanceContext(
-            institutional=self._institutional,
-            jurisdictional=self._jurisdictional,
-            spatial=self._spatial,
-            temporal=self._temporal,
-            operational=self._operational,
+            institutional=institutional if institutional is not None else self._institutional,
+            jurisdictional=jurisdictional if jurisdictional is not None else self._jurisdictional,
+            spatial=spatial if spatial is not None else self._spatial,
+            temporal=temporal if temporal is not None else self._temporal,
+            operational=operational if operational is not None else self._operational,
         )
+
