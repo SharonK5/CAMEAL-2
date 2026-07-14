@@ -1,0 +1,61 @@
+module:
+  name: Context
+  package: context
+  version: 1.0.0
+  status: development
+  description: >
+    Multidimensional governance context subsystem for CAMEAL.
+
+author:
+  name: Sharon Kaitano
+  project: CAMEAL
+  license: MIT
+
+dependencies:
+  required:
+    - kernel
+
+  optional:
+    - security
+    - repository
+
+provides:
+  - GovernanceContext
+  - InstitutionalContext
+  - JurisdictionalContext
+  - SpatialContext
+  - TemporalContext
+  - OperationalContext
+  - ContextBuilder
+  - ContextValidator
+  - ContextRegistry
+  - ContextResolver
+
+consumed_by:
+  - security
+  - repository
+  - query
+  - analytics
+  - monitoring
+  - evaluation
+  - accountability
+  - learning
+  - adaptation
+  - rag
+
+design:
+  immutable: true
+  thread_safe: true
+  ai_ready: true
+  yaml_ready: true
+  database_ready: true
+  extensible: true
+
+future_extensions:
+  - YAML registries
+  - Knowledge graphs
+  - Semantic reasoning
+  - GIS integration
+  - Climate data integration
+  - Enterprise governance
+  - Multi-agent systems

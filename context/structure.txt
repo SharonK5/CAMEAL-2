@@ -1,0 +1,20 @@
+context/
+│
+├── README.md
+├── ARCHITECTURE.md
+├── DESIGN.md
+├── manifest.yaml
+├── version.py
+│
+├── context.py
+├── institutional.py
+├── jurisdictional.py
+├── spatial.py
+├── temporal.py
+│
+├── context_builder.py
+├── context_validator.py
+├── context_registry.py
+├── context_resolver.py
+│
+└── tests/
