@@ -16,23 +16,19 @@ from context.institutional import InstitutionalContext
 
 
 def test_default_construction():
-    """
-    Default construction succeeds.
-    """
-    context = InstitutionalContext()
+    """Default construction with required identifier succeeds."""
+    context = InstitutionalContext(identifier="test")
 
-    assert context.identifier is None
+    assert context.identifier == "test"
     assert context.name is None
     assert context.institution_type is None
     assert context.mandates == ()
     assert context.responsibilities == ()
-    assert context.metadata == {}
+    assert context.metadata == ()
 
 
 def test_full_construction():
-    """
-    All fields are correctly assigned.
-    """
+    """All fields are correctly assigned."""
     context = InstitutionalContext(
         identifier="KE-MOA",
         name="Ministry of Agriculture",
@@ -50,9 +46,7 @@ def test_full_construction():
             "Monitoring",
             "Evaluation",
         ),
-        metadata={
-            "country": "Kenya",
-        },
+        metadata=(("country", "Kenya"),),
     )
 
     assert context.identifier == "KE-MOA"
@@ -65,17 +59,14 @@ def test_full_construction():
 
     assert len(context.mandates) == 2
     assert len(context.responsibilities) == 2
+    assert context.get("country") == "Kenya"
 
 
 def test_metadata_get():
-    """
-    Metadata lookup succeeds.
-    """
+    """Metadata lookup succeeds."""
     context = InstitutionalContext(
-        metadata={
-            "country": "Kenya",
-            "county": "Kakamega",
-        }
+        identifier="test",
+        metadata=(("country", "Kenya"), ("county", "Kakamega")),
     )
 
     assert context.get("country") == "Kenya"
@@ -83,47 +74,41 @@ def test_metadata_get():
 
 
 def test_metadata_default():
-    """
-    Missing metadata returns default.
-    """
-    context = InstitutionalContext()
+    """Missing metadata returns default."""
+    context = InstitutionalContext(identifier="test")
 
     assert context.get("missing") is None
     assert context.get("missing", "default") == "default"
 
 
 def test_contains():
-    """
-    contains() behaves correctly.
-    """
+    """contains() behaves correctly."""
     context = InstitutionalContext(
-        metadata={
-            "country": "Kenya",
-        }
+        identifier="test",
+        metadata=(("country", "Kenya"),),
     )
 
-    assert context.contains("country")
-    assert not context.contains("county")
+    assert context.contains("country") is True
+    assert context.contains("county") is False
 
 
 def test_immutable():
-    """
-    InstitutionalContext is immutable.
-    """
-    context = InstitutionalContext()
+    """InstitutionalContext is immutable."""
+    context = InstitutionalContext(identifier="test")
 
     with pytest.raises(FrozenInstanceError):
-        context.name = "Changed"
+        context.name = "Changed"  # type: ignore
 
 
 def test_tuple_fields_are_immutable():
-    """
-    Governance collections are tuples.
-    """
+    """Governance collections are tuples."""
     context = InstitutionalContext(
+        identifier="test",
         mandates=("Policy",),
         responsibilities=("Monitoring",),
     )
 
     assert isinstance(context.mandates, tuple)
     assert isinstance(context.responsibilities, tuple)
+    with pytest.raises(AttributeError):
+        context.mandates = ("New",)  # type: ignore

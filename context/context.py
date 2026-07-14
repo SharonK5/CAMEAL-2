@@ -2,12 +2,10 @@
 ===============================================================================
 Module: context.context
 
-Canonical CAMEAL Context.
+Canonical CAMEAL Governance Context.
 
-Provides the immutable operational context shared across the CAMEAL
-framework. The context captures the dimensions that influence
-governance, adaptation, monitoring, evaluation, accountability,
-learning, and decision-making.
+Represents the complete governance context by composing the individual
+context dimensions used throughout the CAMEAL framework.
 
 Author: Sharon Kaitano
 Project: CAMEAL
@@ -18,98 +16,45 @@ License: MIT
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
-from typing import Any, Mapping
+from typing import Any
+
+from .institutional import InstitutionalContext
+from .jurisdictional import JurisdictionalContext
+from .spatial import SpatialContext
+from .temporal import TemporalContext
+from .operational import OperationalContext
 
 
 @dataclass(slots=True, frozen=True)
 class GovernanceContext:
     """
-    Immutable CAMEAL governance context.
+    Canonical CAMEAL governance context.
 
-    The context captures four primary dimensions:
+    A GovernanceContext is composed from the five governance dimensions.
 
-    - Institutional
-    - Jurisdictional
-    - Spatial
-    - Temporal
-
-    Additional metadata may be attached without modifying the class.
+    Institutional  -> Who is responsible?
+    Jurisdictional -> Under whose authority?
+    Spatial        -> Where?
+    Temporal       -> When?
+    Operational    -> Under what operating conditions?
     """
 
-    # ------------------------------------------------------------------
-    # Institutional Dimension
-    # ------------------------------------------------------------------
+    institutional: InstitutionalContext | None = None
+    jurisdictional: JurisdictionalContext | None = None
+    spatial: SpatialContext | None = None
+    temporal: TemporalContext | None = None
+    operational: OperationalContext | None = None
 
-    institution: str | None = None
+    # metadata is now a tuple of (key, value) pairs – hashable
+    metadata: tuple[tuple[str, Any], ...] = ()
 
-    department: str | None = None
+    def get(self, key: str, default: Any = None) -> Any:
+        """Return metadata value."""
+        for k, v in self.metadata:
+            if k == key:
+                return v
+        return default
 
-    programme: str | None = None
-
-    # ------------------------------------------------------------------
-    # Jurisdictional Dimension
-    # ------------------------------------------------------------------
-
-    jurisdiction: str | None = None
-
-    policy_domain: str | None = None
-
-    legal_framework: str | None = None
-
-    # ------------------------------------------------------------------
-    # Spatial Dimension
-    # ------------------------------------------------------------------
-
-    location: str | None = None
-
-    region: str | None = None
-
-    country: str | None = None
-
-    # ------------------------------------------------------------------
-    # Temporal Dimension
-    # ------------------------------------------------------------------
-
-    timestamp: datetime = field(
-        default_factory=lambda: datetime.now(UTC)
-    )
-
-    period: str | None = None
-
-    # ------------------------------------------------------------------
-    # Operational Context
-    # ------------------------------------------------------------------
-
-    workflow: str | None = None
-
-    environment: str | None = None
-
-    emergency: bool = False
-
-    # ------------------------------------------------------------------
-    # Extension Metadata
-    # ------------------------------------------------------------------
-
-    metadata: Mapping[str, Any] = field(
-        default_factory=dict
-    )
-
-    def get(
-        self,
-        key: str,
-        default: Any = None,
-    ) -> Any:
-        """
-        Return a metadata value.
-        """
-        return self.metadata.get(key, default)
-
-    def contains(
-        self,
-        key: str,
-    ) -> bool:
-        """
-        Return True if metadata contains the given key.
-        """
-        return key in self.metadata
+    def contains(self, key: str) -> bool:
+        """Return True if metadata contains key."""
+        return any(k == key for k, _ in self.metadata)

@@ -19,7 +19,7 @@ License: MIT
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Mapping
+from typing import Any
 
 
 @dataclass(slots=True, frozen=True)
@@ -31,96 +31,81 @@ class InstitutionalContext:
     """
 
     # -------------------------------------------------------------------------
-    # Identity
+    # Identity – identifier is now required
     # -------------------------------------------------------------------------
-
-    identifier: str | None = None
-
+    identifier: str
     name: str | None = None
-
     institution_type: str | None = None
-
-    # Examples:
-    # Government
-    # Ministry
-    # County
-    # NGO
-    # University
-    # Cooperative
-    # Enterprise
-    # Research Institute
 
     # -------------------------------------------------------------------------
     # Governance
     # -------------------------------------------------------------------------
-
     sector: str | None = None
-
     level: str | None = None
-
-    # Examples:
-    # International
-    # National
-    # Regional
-    # County
-    # Local
-    # Department
-    # Unit
-
     parent: str | None = None
-
     authority: str | None = None
-
-    # Examples:
-    # Strategic
-    # Regulatory
-    # Operational
-    # Advisory
-
     ownership: str | None = None
-
-    # Examples:
-    # Public
-    # Private
-    # Community
-    # Multilateral
-    # Hybrid
 
     # -------------------------------------------------------------------------
     # Governance Responsibilities
     # -------------------------------------------------------------------------
-
     mandates: tuple[str, ...] = ()
-
     responsibilities: tuple[str, ...] = ()
 
     # -------------------------------------------------------------------------
-    # Additional Metadata
+    # Additional Metadata – now hashable (tuple of key-value pairs)
     # -------------------------------------------------------------------------
+    metadata: tuple[tuple[str, Any], ...] = ()
 
-    metadata: Mapping[str, Any] = field(
-        default_factory=dict
-    )
+    def __post_init__(self) -> None:
+        """Lightweight validation to keep the actor meaningful."""
+        if not self.identifier.strip():
+            raise ValueError("identifier cannot be empty or whitespace")
+        if self.name is not None and not self.name.strip():
+            raise ValueError("name cannot be empty if provided")
+        if self.parent == self.identifier:
+            raise ValueError("parent cannot reference self")
 
     # -------------------------------------------------------------------------
     # Convenience Methods
     # -------------------------------------------------------------------------
+    def get(self, key: str, default: Any = None) -> Any:
+        """Return a metadata value."""
+        for k, v in self.metadata:
+            if k == key:
+                return v
+        return default
 
-    def get(
-        self,
-        key: str,
-        default: Any = None,
-    ) -> Any:
-        """
-        Return a metadata value.
-        """
-        return self.metadata.get(key, default)
+    def contains(self, key: str) -> bool:
+        """Return True if metadata contains the given key."""
+        return any(k == key for k, _ in self.metadata)
 
-    def contains(
-        self,
-        key: str,
-    ) -> bool:
-        """
-        Return True if metadata contains the given key.
-        """
-        return key in self.metadata
+    # -------------------------------------------------------------------------
+    # Serialization (YAML round‑tripping)
+    # -------------------------------------------------------------------------
+    def to_dict(self) -> dict[str, Any]:
+        """Convert to a dict suitable for YAML serialization."""
+        return {
+            "identifier": self.identifier,
+            "name": self.name,
+            "institution_type": self.institution_type,
+            "sector": self.sector,
+            "level": self.level,
+            "parent": self.parent,
+            "authority": self.authority,
+            "ownership": self.ownership,
+            "mandates": list(self.mandates),
+            "responsibilities": list(self.responsibilities),
+            "metadata": dict(self.metadata),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> InstitutionalContext:
+        """Create an instance from a dict (e.g., loaded from YAML)."""
+        data_copy = data.copy()
+        for field_name in ("mandates", "responsibilities"):
+            if field_name in data_copy and isinstance(data_copy[field_name], list):
+                data_copy[field_name] = tuple(data_copy[field_name])
+        if "metadata" in data_copy and isinstance(data_copy["metadata"], dict):
+            data_copy["metadata"] = tuple(data_copy["metadata"].items())
+        return cls(**data_copy)
