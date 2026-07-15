@@ -1,0 +1,75 @@
+name: repository
+
+version: 1.0.0
+
+status: foundation
+
+description: >
+  Canonical governance knowledge abstraction layer
+  for the CAMEAL framework.
+
+owner: Sharon Kaitano
+
+license: MIT
+
+package: repository
+
+dependencies:
+
+  - kernel
+
+  - security
+
+  - context
+
+future_dependencies:
+
+  - ingestion
+
+  - query
+
+  - analytics
+
+  - ai
+
+  - rag
+
+exports:
+
+  - Repository
+
+  - RepositoryRegistry
+
+  - RepositoryResolver
+
+  - RepositoryValidator
+
+  - RepositoryProvider
+
+design:
+
+  architecture: provider
+
+  immutable_objects: true
+
+  yaml_first: true
+
+  enterprise_ready: true
+
+  ai_ready: true
+
+  storage_independent: true
+
+principles:
+
+  - provider_pattern
+
+  - separation_of_concerns
+
+  - deterministic_resolution
+
+  - governance_first
+
+  - traceability
+
+  - auditability
