@@ -1,0 +1,97 @@
+query/
+
+README.md
+ARCHITECTURE.md
+DESIGN.md
+manifest.yaml
+
+────────────────────────────────────────────
+# Core
+
+query.py
+query_request.py
+query_response.py
+
+query_intent.py
+query_event.py
+
+query_builder.py
+query_validator.py
+query_registry.py
+query_resolver.py
+query_manager.py
+
+────────────────────────────────────────────
+# Execution
+
+query_engine.py
+query_router.py
+query_executor.py
+
+────────────────────────────────────────────
+# Retrieval
+
+retrieval_request.py
+retrieval_engine.py
+retrieval_strategy.py
+
+────────────────────────────────────────────
+# Analysis
+
+analysis_request.py
+analysis_engine.py
+analysis_result.py
+
+────────────────────────────────────────────
+# Monitoring
+
+monitor_request.py
+monitor_engine.py
+
+────────────────────────────────────────────
+# Evaluation
+
+evaluation_request.py
+evaluation_engine.py
+
+────────────────────────────────────────────
+# Accountability
+
+accountability_request.py
+accountability_engine.py
+
+────────────────────────────────────────────
+# Learning
+
+learning_request.py
+learning_engine.py
+
+────────────────────────────────────────────
+# Adaptation
+
+adaptation_request.py
+adaptation_engine.py
+
+────────────────────────────────────────────
+# Diagnostics
+
+diagnostic_request.py
+diagnostic_engine.py
+
+────────────────────────────────────────────
+# Enterprise APIs
+
+service_request.py
+service_engine.py
+
+────────────────────────────────────────────
+# AI
+
+llm_request.py
+llm_engine.py
+
+rag_request.py
+rag_engine.py
+
+embedding_request.py
+embedding_engine.py
