@@ -1,6 +1,6 @@
 """
 ===============================================================================
-Tests for context.context
+Tests for context.context (security integration)
 ===============================================================================
 """
 
@@ -8,24 +8,22 @@ from context.context import GovernanceContext
 
 
 def test_defaults():
-
     context = GovernanceContext()
 
-    assert context.jurisdiction is None
-    assert context.institution is None
-    assert context.workflow is None
-    assert context.environment is None
-    assert context.emergency is False
-    assert context.metadata == {}
+    # Only the five governance dimensions exist
+    assert context.jurisdictional is None
+    assert context.institutional is None
+    assert context.spatial is None
+    assert context.temporal is None
+    assert context.operational is None
+    # metadata is now a tuple (hashable)
+    assert context.metadata == ()
 
 
 def test_metadata_lookup():
-
+    # metadata is a tuple of (key, value) pairs
     context = GovernanceContext(
-        metadata={
-            "county": "Kakamega",
-            "hazard": "Flood",
-        }
+        metadata=(("county", "Kakamega"), ("hazard", "Flood"))
     )
 
     assert context.get("county") == "Kakamega"
@@ -33,7 +31,6 @@ def test_metadata_lookup():
 
 
 def test_missing_metadata():
-
     context = GovernanceContext()
 
     assert context.get("missing") is None
@@ -41,21 +38,18 @@ def test_missing_metadata():
 
 
 def test_contains():
-
     context = GovernanceContext(
-        metadata={"country": "Kenya"}
+        metadata=(("country", "Kenya"),)
     )
 
-    assert context.contains("country")
-    assert not context.contains("county")
+    assert context.contains("country") is True
+    assert context.contains("county") is False
 
 
 def test_context_is_immutable():
-
     context = GovernanceContext()
+    from dataclasses import FrozenInstanceError
+    import pytest
 
-    try:
-        context.workflow = "Emergency"
-        assert False
-    except Exception:
-        assert True
+    with pytest.raises(FrozenInstanceError):
+        context.institutional = "anything"  # type: ignore

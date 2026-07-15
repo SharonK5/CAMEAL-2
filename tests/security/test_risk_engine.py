@@ -6,7 +6,7 @@ Tests for security.risk_engine
 """
 
 from security.authorization_request import AuthorizationRequest
-from context.context import GovernanceContext  # <-- changed from Context
+from context.context import GovernanceContext
 from security.permissions import Permission
 from security.policy import Policy
 from security.risk_engine import RiskEngine
@@ -28,12 +28,15 @@ def make_context(**kwargs):
     Any extra keyword arguments are placed into the metadata mapping.
     """
     # Pop 'metadata' if passed explicitly; otherwise start empty
-    metadata = kwargs.pop("metadata", {})
+    metadata_dict = kwargs.pop("metadata", {})
+
+    # Convert metadata dict to a tuple of (key, value) pairs
+    metadata_tuple = tuple(metadata_dict.items())
 
     # Defaults for the dataclass fields
     defaults = {
-        "jurisdiction": "Kenya",
-        "metadata": metadata,
+        "jurisdictional": "Kenya",      # fixed field name
+        "metadata": metadata_tuple,     # tuple, not dict
     }
     # Update with any remaining kwargs (these are dataclass fields)
     defaults.update(kwargs)
@@ -42,7 +45,7 @@ def make_context(**kwargs):
 
 
 def make_policy():
-    # Fixed: policy_id was removed, roles must be provided (empty frozenset is fine)
+    # policy_id was removed, roles must be provided (empty frozenset is fine)
     return Policy(
         name="Default",
         description="Default policy",
@@ -111,7 +114,7 @@ def test_high_sensitivity_is_high():
         permission=Permission.READ,
     )
 
-    # Sensitivity is now stored in metadata
+    # Sensitivity is now stored in metadata – passed as dict, auto‑converted
     risk = engine.classify(
         request=request,
         policy=make_policy(),
