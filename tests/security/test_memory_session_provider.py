@@ -1,5 +1,5 @@
-from security.memory_session_provider import MemorySessionProvider
-from security.session import Session
+from security.identity.memory_session_provider import MemorySessionProvider
+from security.identity.session import Session
 
 
 def test_create_session():

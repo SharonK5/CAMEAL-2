@@ -1,5 +1,5 @@
-from security.roles import Role
-from security.user import User
+from security.identity.roles import Role
+from security.identity.user import User
 
 
 def test_create_user():

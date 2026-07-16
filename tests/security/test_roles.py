@@ -1,4 +1,4 @@
-from security.roles import Role
+from security.identity.roles import Role
 
 
 def test_roles_exist():

@@ -6,12 +6,12 @@ Integration tests for security.authenticator
 
 from datetime import datetime, UTC
 
-from security.authentication_request import AuthenticationRequest
-from security.authenticator import Authenticator
-from security.hashing import HashingService
-from security.identity_record import IdentityRecord
-from security.memory_provider import MemoryIdentityProvider
-from security.user import User
+from security.identity.authentication_request import AuthenticationRequest
+from security.identity.authenticator import Authenticator
+from security.integrity.hashing import HashingService
+from security.identity.identity_record import IdentityRecord
+from security.identity.memory_provider import MemoryIdentityProvider
+from security.identity.user import User
 
 
 def create_provider():

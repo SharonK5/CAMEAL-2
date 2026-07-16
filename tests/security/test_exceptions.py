@@ -1,6 +1,6 @@
 import pytest
 
-from security.exceptions import (
+from security.core.exceptions import (
     AuthenticationError,
     AuthorizationError,
     InvalidCredentialsError,

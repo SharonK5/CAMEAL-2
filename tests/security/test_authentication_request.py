@@ -1,4 +1,4 @@
-from security.authentication_request import AuthenticationRequest
+from security.identity.authentication_request import AuthenticationRequest
 
 
 def test_request_defaults():

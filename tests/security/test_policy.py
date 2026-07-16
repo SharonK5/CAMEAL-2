@@ -4,9 +4,9 @@ Unit tests for security.policy
 ===============================================================================
 """
 
-from security.permissions import Permission
-from security.policy import Policy
-from security.roles import Role
+from security.identity.permissions import Permission
+from security.governance.policy import Policy
+from security.identity.roles import Role
 
 
 def test_policy_creation():

@@ -4,14 +4,14 @@ Integration tests for security.authorizer
 ===============================================================================
 """
 
-from security.authorizer import Authorizer
-from security.authorization_request import AuthorizationRequest
-from security.default_role_permission_provider import (
+from security.identity.authorizer import Authorizer
+from security.identity.authorization_request import AuthorizationRequest
+from security.identity.default_role_permission_provider import (
     DefaultRolePermissionProvider,
 )
-from security.permissions import Permission
-from security.roles import Role
-from security.user import User
+from security.identity.permissions import Permission
+from security.identity.roles import Role
+from security.identity.user import User
 
 
 def create_authorizer() -> Authorizer:

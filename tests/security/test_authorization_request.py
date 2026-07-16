@@ -1,6 +1,6 @@
-from security.authorization_request import AuthorizationRequest
-from security.permissions import Permission
-from security.user import User
+from security.identity.authorization_request import AuthorizationRequest
+from security.identity.permissions import Permission
+from security.identity.user import User
 
 
 def test_create_request():

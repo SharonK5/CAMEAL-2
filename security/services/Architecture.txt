@@ -1,0 +1,54 @@
+security/
+│
+├── services/
+│   │
+│   ├── README.md
+│   ├── ARCHITECTURE.md
+│   ├── DESIGN.md
+│   ├── manifest.yaml
+│   │
+│   ├── __init__.py
+│   │
+│   ├── service.py
+│   ├── service_registry.py
+│   ├── service_resolver.py
+│   ├── service_manager.py
+│   ├── service_validator.py
+│   │
+│   ├── authentication/
+│   │     ├── __init__.py
+│   │     ├── authentication_service.py
+│   │     ├── default_authentication_service.py
+│   │     └── tests/
+│   │
+│   ├── authorization/
+│   │     ├── __init__.py
+│   │     ├── authorization_service.py
+│   │     ├── default_authorization_service.py
+│   │     └── tests/
+│   │
+│   ├── policy/
+│   │     ├── __init__.py
+│   │     ├── policy_service.py
+│   │     ├── default_policy_service.py
+│   │     └── tests/
+│   │
+│   ├── risk/
+│   │     ├── __init__.py
+│   │     ├── risk_service.py
+│   │     ├── default_risk_service.py
+│   │     └── tests/
+│   │
+│   ├── audit/
+│   │     ├── __init__.py
+│   │     ├── audit_service.py
+│   │     ├── default_audit_service.py
+│   │     └── tests/
+│   │
+│   ├── trust/
+│   │     ├── __init__.py
+│   │     ├── trust_service.py
+│   │     ├── default_trust_service.py
+│   │     └── tests/
+│   │
+│   └── tests/

@@ -1,4 +1,4 @@
-from security.decision import Decision
+from security.audit.decision import Decision
 
 
 def test_decision_created():

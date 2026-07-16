@@ -1,0 +1,111 @@
+"""
+===============================================================================
+Module: query.execution.execution_stage_resolver
+
+Execution Stage Resolver.
+
+Determines the ordered execution stages for a query.
+
+The default implementation executes all registered stages in registry order.
+Specialized resolvers may dynamically reorder, skip, or inject stages.
+
+Author: Sharon Kaitano
+Project: CAMEAL
+License: MIT
+===============================================================================
+"""
+
+from __future__ import annotations
+
+from collections.abc import Sequence
+
+from query.query_request import QueryRequest
+
+from .execution_context import ExecutionContext
+from .execution_stage_registry import ReadOnlyExecutionStageRegistry
+from .stage import ExecutionStage
+
+
+class ExecutionStageResolver:
+    """
+    Resolves the execution plan for a query.
+
+    The resolver never executes stages.
+    It only determines which stages should run and in what order.
+    """
+
+    def __init__(
+        self,
+        registry: ReadOnlyExecutionStageRegistry,
+    ) -> None:
+
+        self._registry = registry
+
+    @property
+    def registry(self) -> ReadOnlyExecutionStageRegistry:
+        """
+        Read-only access to the underlying registry.
+        """
+        return self._registry
+
+    # ------------------------------------------------------------------
+    # Resolution
+    # ------------------------------------------------------------------
+
+    def resolve(
+        self,
+        request: QueryRequest,
+        context: ExecutionContext,
+    ) -> Sequence[ExecutionStage]:
+        """
+        Resolve the execution plan.
+
+        The default implementation returns every registered stage
+        in registration order.
+
+        Subclasses may override to support:
+
+        • conditional execution
+        • feature flags
+        • enterprise editions
+        • adaptive execution
+        • A/B testing
+        • policy-driven stage selection
+        """
+
+        return self._registry.stages()
+
+    # ------------------------------------------------------------------
+    # Stage lookup
+    # ------------------------------------------------------------------
+
+    def get(
+        self,
+        identifier: str,
+    ) -> ExecutionStage:
+
+        stage = self._registry.get(identifier)
+
+        if stage is None:
+            raise KeyError(
+                f"Unknown execution stage '{identifier}'."
+            )
+
+        return stage
+
+    def exists(
+        self,
+        identifier: str,
+    ) -> bool:
+
+        return self._registry.contains(identifier)
+
+    def resolve_many(
+        self,
+        identifiers: Sequence[str],
+    ) -> tuple[ExecutionStage, ...]:
+
+        return tuple(
+            self.get(identifier)
+            for identifier in identifiers
+        )

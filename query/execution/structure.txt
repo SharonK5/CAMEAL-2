@@ -1,0 +1,36 @@
+query/
+└── execution/
+    ├── README.md
+    ├── ARCHITECTURE.md
+    ├── DESIGN.md
+    ├── manifest.yaml
+    │
+    ├── __init__.py
+    │
+    ├── stage.py                ← abstract base class
+    ├── execution_context.py    ← shared runtime state
+    ├── pipeline.py             ← ordered stage execution
+    ├── exceptions.py
+    │
+    ├── validation_stage.py
+    ├── security_stage.py
+    ├── context_stage.py
+    ├── repository_stage.py
+    ├── routing_stage.py
+    │
+    ├── analytics_stage.py
+    ├── monitoring_stage.py
+    ├── evaluation_stage.py
+    ├── accountability_stage.py
+    ├── learning_stage.py
+    ├── adaptation_stage.py
+    │
+    ├── rag_stage.py
+    ├── llm_stage.py
+    ├── enterprise_api_stage.py
+    │
+    ├── stage_registry.py
+    ├── stage_builder.py
+    ├── stage_resolver.py
+    ├── stage_manager.py
+    └── stage_validator.py

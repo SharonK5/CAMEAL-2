@@ -1,4 +1,4 @@
-from security.session import Session
+from security.identity.session import Session
 
 
 def test_session_creation():

@@ -5,14 +5,14 @@ Tests for security.risk_engine
 ===============================================================================
 """
 
-from security.authorization_request import AuthorizationRequest
+from security.identity.authorization_request import AuthorizationRequest
 from context.context import GovernanceContext
-from security.permissions import Permission
-from security.policy import Policy
-from security.risk_engine import RiskEngine
-from security.risk_level import RiskLevel
-from security.roles import Role
-from security.user import User
+from security.identity.permissions import Permission
+from security.governance.policy import Policy
+from security.core.risk_engine import RiskEngine
+from security.core.risk_level import RiskLevel
+from security.identity.roles import Role
+from security.identity.user import User
 
 
 def make_user():

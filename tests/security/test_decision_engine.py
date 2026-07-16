@@ -9,14 +9,14 @@ fields.
 import pytest
 from unittest.mock import Mock
 
-from security.authorization_request import AuthorizationRequest
-from security.authorizer import Authorizer
-from security.decision import Decision
-from security.decision_engine import DecisionEngine, PolicyEvaluator
-from security.policy import Policy
-from security.permissions import Permission
-from security.roles import Role
-from security.user import User
+from security.identity.authorization_request import AuthorizationRequest
+from security.identity.authorizer import Authorizer
+from security.audit.decision import Decision
+from security.core.decision_engine import DecisionEngine, PolicyEvaluator
+from security.governance.policy import Policy
+from security.identity.permissions import Permission
+from security.identity.roles import Role
+from security.identity.user import User
 
 
 def make_request(

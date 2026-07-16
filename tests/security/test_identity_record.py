@@ -1,5 +1,5 @@
-from security.identity_record import IdentityRecord
-from security.user import User
+from security.identity.identity_record import IdentityRecord
+from security.identity.user import User
 
 
 def test_create_identity():

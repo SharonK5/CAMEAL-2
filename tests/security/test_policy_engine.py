@@ -4,10 +4,10 @@ Unit tests for security.policy_engine
 ===============================================================================
 """
 
-from security.permissions import Permission
-from security.policy import Policy
-from security.policy_engine import PolicyEngine
-from security.roles import Role
+from security.identity.permissions import Permission
+from security.governance.policy import Policy
+from security.governance.policy_engine import PolicyEngine
+from security.identity.roles import Role
 
 
 def create_policy():

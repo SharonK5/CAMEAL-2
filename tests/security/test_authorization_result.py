@@ -1,4 +1,4 @@
-from security.authorization_result import AuthorizationResult
+from security.identity.authorization_result import AuthorizationResult
 
 
 def test_success():

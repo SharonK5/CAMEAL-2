@@ -1,20 +1,88 @@
-from .authentication_request import AuthenticationRequest
-from .authentication_result import AuthenticationResult
-from .audit import AuditEvent
-from .exceptions import (
-    AccountDisabledError,
-    AuthenticationError,
-    AuthorizationError,
-    InvalidCredentialsError,
-    InvalidTokenError,
-    PermissionDeniedError,
+# security/__init__.py
+
+# Public façade – import common classes from subpackages
+
+from .core import (
+    DecisionEngine,
+    RiskEngine,
     SecurityError,
-    SessionExpiredError,
+    RiskLevel,
 )
-from .hashing import HashingService
-from .identity_provider import IdentityProvider
-from .identity_record import IdentityRecord
-from .memory_provider import MemoryIdentityProvider
-from .permissions import Permission
-from .roles import Role
-from .user import User
+
+from .identity import (
+    Authenticator,
+    Authorizer,
+    AuthenticationRequest,
+    AuthenticationResult,
+    AuthorizationRequest,
+    AuthorizationResult,
+    IdentityProvider,
+    IdentityRecord,
+    Session,
+    SessionProvider,
+    User,
+    Role,
+    Permission,
+    RolePermissionProvider,
+    DefaultRolePermissionProvider,
+    InMemoryPermissionProvider,
+    MemoryIdentityProvider,
+    MemorySessionProvider,
+)
+
+from .governance import (
+    Policy,
+    PolicyEngine,
+    PolicyStore,
+    Constraint,
+    Obligation,
+)
+
+from .audit import (
+    AuditEvent,
+    Decision,
+    DecisionLog,
+)
+
+from .integrity import (
+    HashingService,
+)
+
+__all__ = [
+    # core
+    "DecisionEngine",
+    "RiskEngine",
+    "SecurityError",
+    "RiskLevel",
+    # identity
+    "Authenticator",
+    "Authorizer",
+    "AuthenticationRequest",
+    "AuthenticationResult",
+    "AuthorizationRequest",
+    "AuthorizationResult",
+    "IdentityProvider",
+    "IdentityRecord",
+    "Session",
+    "SessionProvider",
+    "User",
+    "Role",
+    "Permission",
+    "RolePermissionProvider",
+    "DefaultRolePermissionProvider",
+    "InMemoryPermissionProvider",
+    "MemoryIdentityProvider",
+    "MemorySessionProvider",
+    # governance
+    "Policy",
+    "PolicyEngine",
+    "PolicyStore",
+    "Constraint",
+    "Obligation",
+    # audit
+    "AuditEvent",
+    "Decision",
+    "DecisionLog",
+    # integrity
+    "HashingService",
+]

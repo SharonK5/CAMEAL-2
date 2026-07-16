@@ -7,7 +7,7 @@ Tests for security.constraint
 import pytest
 from dataclasses import FrozenInstanceError
 
-from security.constraint import Constraint
+from security.governance.constraint import Constraint
 
 
 def test_create_constraint():

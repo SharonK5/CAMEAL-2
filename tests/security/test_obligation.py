@@ -8,7 +8,7 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from security.obligation import Obligation
+from security.governance.obligation import Obligation
 
 
 def test_create_obligation():

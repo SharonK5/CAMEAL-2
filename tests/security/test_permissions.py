@@ -1,4 +1,4 @@
-from security.permissions import Permission
+from security.identity.permissions import Permission
 
 
 def test_permissions_exist():

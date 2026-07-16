@@ -1,5 +1,5 @@
-from security.authentication_result import AuthenticationResult
-from security.user import User
+from security.identity.authentication_result import AuthenticationResult
+from security.identity.user import User
 
 
 def test_success_result():

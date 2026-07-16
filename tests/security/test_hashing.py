@@ -1,4 +1,4 @@
-from security.hashing import HashingService
+from security.integrity.hashing import HashingService
 
 
 def test_hash_password():

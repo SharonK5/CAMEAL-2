@@ -1,0 +1,38 @@
+name: services
+
+description: >
+  Business logic layer for CAMEAL. Services implement governance,
+  analytics, AI, monitoring, evaluation, learning,
+  adaptation, and enterprise integrations.
+
+version: 1.0.0
+
+status: foundation
+
+owner: Sharon Kaitano
+
+license: MIT
+
+dependencies: []
+
+exports:
+
+  - Service
+  - ServiceRegistry
+  - ServiceResolver
+  - ServiceValidator
+  - ServiceBuilder
+  - ServiceFactory
+  - ServiceManager
+
+future:
+
+  - AnalyticsService
+  - MonitoringService
+  - EvaluationService
+  - AccountabilityService
+  - LearningService
+  - AdaptationService
+  - RAGService
+  - LLMService
+  - EnterpriseService

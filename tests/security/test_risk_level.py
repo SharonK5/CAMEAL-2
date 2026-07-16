@@ -4,7 +4,7 @@ Tests for security.risk_level
 ===============================================================================
 """
 
-from security.risk_level import RiskLevel
+from security.core.risk_level import RiskLevel
 
 
 def test_ordering():
