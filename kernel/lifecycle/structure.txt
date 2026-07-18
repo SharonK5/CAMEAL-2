@@ -1,0 +1,25 @@
+kernel/
+└── lifecycle/
+    ├── README.md
+    ├── ARCHITECTURE.md
+    ├── DESIGN.md
+    ├── API.md
+    ├── EXECUTION_FLOW.md
+    ├── manifest.yaml
+    ├── version.py
+    ├── __init__.py
+    │
+    ├── lifecycle.py          # Abstract lifecycle contract
+    ├── states.py             # LifecycleState enum
+    ├── transitions.py        # Valid state transitions
+    ├── manager.py            # LifecycleManager
+    ├── health.py             # HealthStatus
+    ├── diagnostics.py        # Runtime diagnostics
+    ├── observer.py           # Lifecycle events/observers
+    ├── exceptions.py
+    │
+    └── tests/
+        ├── test_lifecycle.py
+        ├── test_manager.py
+        ├── test_health.py
+        └── test_transitions.py

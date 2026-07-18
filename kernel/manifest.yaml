@@ -1,35 +1,239 @@
-version: 1.0
+# ============================================================================
+# CAMEAL Kernel Manifest
+# ============================================================================
 
-components:
+id: cameal.kernel
 
-    repository:
+name: CAMEAL Kernel
 
-        enabled: true
+version: 1.0.0
 
-    analytics:
+description: >
+  Runtime orchestration kernel responsible for bootstrapping the CAMEAL
+  platform, managing lifecycle, dependency injection, workflow execution,
+  plugin discovery, context propagation, event processing, and diagnostics.
 
-        enabled: true
+type: kernel
 
-    governance:
+status: stable
 
-        enabled: true
+license: Apache-2.0
 
-    ai:
+authors:
+  - Sharon Kaitano
 
-        enabled: true
+maintainers:
+  - CAMEAL Core Team
 
-    drafting:
+---
 
-        enabled: true
+runtime:
 
-startup:
+  entrypoint: kernel.kernel.CAMEALKernel
 
-    - repository
+  bootstrap: kernel.bootstrap.Bootstrap
 
-    - analytics
+  minimum_python: "3.12"
 
-    - governance
+  lifecycle:
 
-    - ai
+    - initialize
+    - validate
+    - boot
+    - start
+    - execute
+    - stop
+    - shutdown
+    - dispose
 
-    - drafting
+---
+
+capabilities:
+
+  - bootstrap
+  - dependency_injection
+  - plugin_discovery
+  - engine_management
+  - repository_management
+  - workflow_execution
+  - context_management
+  - event_processing
+  - scheduling
+  - diagnostics
+  - lifecycle_management
+
+---
+
+managed_components:
+
+  managers:
+
+    - EngineManager
+    - RepositoryManager
+    - WorkflowManager
+    - ContextManager
+
+  infrastructure:
+
+    - DependencyContainer
+    - EventBus
+    - Scheduler
+
+---
+
+loads:
+
+  engines:
+
+    - security
+    - retrieval
+    - reasoning
+    - monitoring
+    - evaluation
+    - accountability
+    - learning
+    - adaptation
+
+---
+
+repositories:
+
+  - document
+  - knowledge
+  - evidence
+  - policy
+  - trust
+  - decision
+
+---
+
+providers:
+
+  - llm
+  - ml
+  - authentication
+  - authorization
+  - storage
+
+---
+
+publishes:
+
+  events:
+
+    - KernelInitialized
+    - KernelStarted
+    - KernelStopped
+    - RequestReceived
+    - WorkflowSelected
+    - WorkflowCompleted
+    - EngineStarted
+    - EngineStopped
+    - HealthChanged
+    - DiagnosticsUpdated
+
+---
+
+subscribes:
+
+  events:
+
+    - ShutdownRequested
+    - ReloadPlugins
+    - RepositoryChanged
+    - EngineRegistered
+    - WorkflowRegistered
+
+---
+
+configuration:
+
+  files:
+
+    - config/kernel.yaml
+
+  environment:
+
+    - CAMEAL_ENV
+    - CAMEAL_HOME
+    - CAMEAL_LOG_LEVEL
+
+---
+
+health:
+
+  endpoint: kernel.health
+
+  checks:
+
+    - container
+    - repositories
+    - engines
+    - scheduler
+    - event_bus
+
+---
+
+diagnostics:
+
+  tracing: true
+
+  metrics: true
+
+  structured_logging: true
+
+  profiling: true
+
+---
+
+security:
+
+  immutable_context: true
+
+  dependency_validation: true
+
+  plugin_validation: true
+
+  provenance_tracking: true
+
+---
+
+extension:
+
+  plugin_directories:
+
+    - plugins
+    - engines
+    - providers
+
+  manifest_required: true
+
+  hot_reload: false
+
+---
+
+dependencies:
+
+  required: []
+
+  optional:
+
+    - cameal.security
+    - cameal.retrieval
+    - cameal.reasoning
+    - cameal.monitoring
+    - cameal.learning
+
+---
+
+metadata:
+
+  architecture: CAMEAL
+
+  layer: runtime
+
+  category: kernel
+
+  maturity: production
+
+  last_updated: "2026-07-18"

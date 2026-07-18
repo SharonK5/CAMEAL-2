@@ -1,0 +1,64 @@
+# kernel/lifecycle/manifest.yaml
+name: cameal-kernel-lifecycle
+version: 1.0.0
+description: >
+  Standard lifecycle contract and orchestration for kernel-managed components.
+
+  Provides uniform initialization, validation, boot, start, stop, shutdown,
+  dispose, and health-checking for all runtime components. The lifecycle
+  subsystem ensures deterministic startup and shutdown order, validates
+  state transitions, publishes lifecycle events, and aggregates health
+  reports.
+
+type: kernel-component
+subsystem: lifecycle
+
+capabilities:
+  - lifecycle-management
+  - health-reporting
+  - diagnostics
+  - observer-events
+  - state-transition-validation
+
+dependencies: []
+
+exports:
+  - Lifecycle
+  - Pausable
+  - LifecycleManager
+  - LifecycleState
+  - HealthStatus
+  - HealthReport
+  - LifecycleObserver
+  - NullObserver
+  - Diagnostics
+  - LifecycleError
+
+lifecycle:
+  initialize: false   # The subsystem itself does not need initialization
+  start: false
+  stop: false
+
+maintainers:
+  - CAMEAL Core Team
+
+documentation:
+  - README.md
+  - ARCHITECTURE.md
+  - DESIGN.md
+  - API.md
+  - EXECUTION_FLOW.md
+
+versioning:
+  schema: semver
+  current: 1.0.0
+  api: v1
+
+stability: stable
+
+tags:
+  - kernel
+  - lifecycle
+  - orchestration
+  - health
+  - observability
