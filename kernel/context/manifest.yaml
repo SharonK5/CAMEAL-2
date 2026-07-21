@@ -1,0 +1,108 @@
+# ==============================================================================
+# CAMEAL Kernel Context Subsystem Manifest
+# ==============================================================================
+
+id: cameal.kernel.context
+
+name: Kernel Context
+
+description: >
+  Runtime context management subsystem for the CAMEAL Kernel.
+  Responsible for creating, validating, propagating, and managing
+  execution context throughout the request lifecycle.
+
+version: 1.0.0
+api_version: 1.0
+
+status: stable
+
+author: CAMEAL Project
+
+license: Apache-2.0
+
+category: kernel
+
+type: runtime
+
+entry_point: cameal.kernel.context
+
+documentation:
+  readme: README.md
+  architecture: ARCHITECTURE.md
+  design: DESIGN.md
+  api: API.md
+  execution_flow: EXECUTION_FLOW.md
+
+public_api:
+  - ExecutionContext
+  - RequestContext
+  - WorkflowContext
+  - SecurityContext
+  - TraceContext
+  - ProvenanceContext
+  - ContextBuilder
+  - ContextValidator
+
+internal_components:
+  - ContextRegistry
+  - ContextFactory
+
+dependencies:
+  kernel:
+    - lifecycle
+    - container
+    - events
+
+used_by:
+  - bootstrap
+  - orchestrator
+  - engine_manager
+  - workflow_manager
+  - repository_manager
+  - scheduler
+
+provides:
+  - execution_context
+  - request_context
+  - security_context
+  - workflow_context
+  - trace_context
+  - provenance_context
+  - context_validation
+  - context_propagation
+
+lifecycle:
+
+  initialize: true
+
+  validate: true
+
+  boot: true
+
+  start: true
+
+  stop: true
+
+  shutdown: true
+
+observability:
+
+  metrics: true
+
+  tracing: true
+
+  logging: true
+
+  diagnostics: true
+
+thread_safe: true
+
+immutable_context: true
+
+supports_plugins: false
+
+supports_hot_reload: false
+
+test_directory: tests/
+
+version_file: version.py

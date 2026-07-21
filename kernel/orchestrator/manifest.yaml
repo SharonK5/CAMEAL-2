@@ -1,0 +1,189 @@
+# ============================================================================
+# CAMEAL Kernel Orchestrator Manifest
+# ============================================================================
+#
+# Component : Orchestrator
+# Package   : kernel.orchestrator
+# Version   : 1.0.0
+# Status    : Stable Public API
+#
+# The Orchestrator coordinates workflow execution across kernel-managed
+# engines. It does not implement domain intelligence; it selects workflows,
+# constructs execution plans, dispatches engines, and propagates immutable
+# execution context.
+# ============================================================================
+
+apiVersion: cameal.io/v1
+
+kind: KernelComponent
+
+metadata:
+  name: orchestrator
+  displayName: CAMEAL Kernel Orchestrator
+  package: kernel.orchestrator
+  version: 1.0.0
+  apiVersion: "1.0"
+  status: stable
+  description: >
+    Runtime workflow orchestration subsystem responsible for coordinating
+    engine execution, workflow planning, routing, dispatching, and
+    execution context propagation.
+
+spec:
+
+  category: kernel
+
+  component: orchestrator
+
+  lifecycle:
+    managed: true
+    class: Lifecycle
+
+  publicAPI:
+
+    stable:
+      - Orchestrator
+
+    unstable:
+      - Planner
+      - Router
+      - Executor
+      - Dispatcher
+      - Pipeline
+      - Validator
+
+  responsibilities:
+
+    - Select workflows
+    - Build execution plans
+    - Coordinate engine execution
+    - Dispatch execution stages
+    - Propagate execution context
+    - Build responses
+    - Publish orchestration events
+
+  doesNot:
+
+    - Perform reasoning
+    - Retrieve knowledge
+    - Execute machine learning
+    - Generate LLM responses
+    - Evaluate policies
+    - Calculate risk
+    - Monitor infrastructure
+    - Persist domain state
+
+  execution:
+
+    stateless: true
+
+    immutableContext: true
+
+    deterministic: true
+
+    synchronous: true
+
+    asynchronous: supported
+
+  dependencies:
+
+    required:
+
+      - kernel.container
+      - kernel.context
+      - kernel.events
+      - kernel.managers
+      - kernel.models
+
+    optional:
+
+      - kernel.scheduler
+
+  managers:
+
+    - EngineManager
+    - WorkflowManager
+    - ContextManager
+
+  runtime:
+
+    planner: Planner
+    router: Router
+    executor: Executor
+    dispatcher: Dispatcher
+    validator: Validator
+
+  executionFlow:
+
+    - Build Context
+    - Select Workflow
+    - Build Execution Plan
+    - Validate Plan
+    - Execute Pipeline
+    - Dispatch Engines
+    - Build Response
+
+  events:
+
+    publishes:
+
+      - workflow.selected
+      - workflow.started
+      - workflow.completed
+      - workflow.failed
+      - execution.started
+      - execution.completed
+      - execution.failed
+
+    subscribes:
+
+      - request.received
+      - context.created
+      - engine.completed
+      - engine.failed
+
+  guarantees:
+
+    - Immutable execution context
+    - Deterministic orchestration
+    - Ordered workflow execution
+    - End-to-end traceability
+    - Context propagation
+    - Explainable execution
+    - Engine isolation
+
+  extension:
+
+    pluginAware: true
+
+    extensible:
+
+      - Workflow planners
+      - Routers
+      - Dispatch strategies
+      - Pipeline validators
+
+testing:
+
+  requiredCoverage: 100
+
+  suites:
+
+    - planner
+    - router
+    - dispatcher
+    - executor
+    - validator
+    - orchestrator
+
+documentation:
+
+  - README.md
+  - ARCHITECTURE.md
+  - DESIGN.md
+  - API.md
+  - EXECUTION_FLOW.md
+
+owner: CAMEAL Kernel Team
+
+license: Proprietary

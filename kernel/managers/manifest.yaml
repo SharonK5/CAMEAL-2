@@ -1,0 +1,165 @@
+# =============================================================================
+# CAMEAL Kernel Managers Manifest
+# =============================================================================
+
+name: kernel.managers
+
+display_name: CAMEAL Kernel Managers
+
+description: >
+  Runtime management subsystem responsible for coordinating kernel
+  managers, including engine, repository, workflow, context, plugin,
+  and scheduler management. The subsystem provides orchestration
+  services but contains no domain intelligence.
+
+version: 1.0.0
+api_version: 1.0
+status: stable
+
+type: kernel-subsystem
+
+owner: CAMEAL Project
+
+license: Apache-2.0
+
+python: ">=3.11"
+
+# -----------------------------------------------------------------------------
+# Responsibilities
+# -----------------------------------------------------------------------------
+
+responsibilities:
+  - Engine management
+  - Repository management
+  - Workflow management
+  - Context management
+  - Plugin management
+  - Scheduler management
+  - Runtime coordination
+  - Component registration
+  - Health aggregation
+
+# -----------------------------------------------------------------------------
+# Public API
+# -----------------------------------------------------------------------------
+
+exports:
+
+  managers:
+    - Manager
+    - EngineManager
+    - RepositoryManager
+    - WorkflowManager
+    - ContextManager
+    - PluginManager
+    - SchedulerManager
+
+# -----------------------------------------------------------------------------
+# Internal Components
+# -----------------------------------------------------------------------------
+
+internals:
+  - Registry
+  - Validator
+
+# -----------------------------------------------------------------------------
+# Dependencies
+# -----------------------------------------------------------------------------
+
+dependencies:
+
+  kernel:
+    - container
+    - lifecycle
+    - events
+    - context
+
+# -----------------------------------------------------------------------------
+# Lifecycle
+# -----------------------------------------------------------------------------
+
+lifecycle:
+
+  initialize: true
+  validate: true
+  boot: true
+  start: true
+  execute: true
+  stop: true
+  shutdown: true
+  dispose: true
+
+# -----------------------------------------------------------------------------
+# Thread Safety
+# -----------------------------------------------------------------------------
+
+thread_safe: true
+
+request_scoped: false
+
+supports_async: true
+
+# -----------------------------------------------------------------------------
+# Events
+# -----------------------------------------------------------------------------
+
+publishes:
+  - manager.registered
+  - manager.started
+  - manager.stopped
+  - workflow.selected
+  - engine.registered
+
+subscribes:
+  - kernel.boot
+  - kernel.shutdown
+  - plugin.loaded
+
+# -----------------------------------------------------------------------------
+# Diagnostics
+# -----------------------------------------------------------------------------
+
+diagnostics:
+
+  metrics: true
+  tracing: true
+  logging: true
+  health_checks: true
+
+# -----------------------------------------------------------------------------
+# Extension Points
+# -----------------------------------------------------------------------------
+
+extension_points:
+
+  - manager
+  - workflow
+  - repository
+  - engine
+
+# -----------------------------------------------------------------------------
+# Compatibility
+# -----------------------------------------------------------------------------
+
+compatibility:
+
+  api: "1.x"
+  kernel: "1.x"
+
+# -----------------------------------------------------------------------------
+# Metadata
+# -----------------------------------------------------------------------------
+
+tags:
+  - kernel
+  - managers
+  - orchestration
+  - runtime
+  - infrastructure
+
+documentation:
+  - README.md
+  - ARCHITECTURE.md
+  - DESIGN.md
+  - API.md
+  - EXECUTION_FLOW.md

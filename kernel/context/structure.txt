@@ -1,0 +1,23 @@
+kernel/
+└── context/
+    ├── README.md
+    ├── ARCHITECTURE.md
+    ├── DESIGN.md
+    ├── API.md
+    ├── EXECUTION_FLOW.md
+    ├── manifest.yaml
+    ├── version.py
+    ├── __init__.py
+    │
+    ├── execution_context.py
+    ├── request_context.py
+    ├── security_context.py
+    ├── workflow_context.py
+    ├── provenance_context.py
+    ├── trace_context.py
+    ├── context_builder.py
+    ├── context_validator.py
+    ├── context_registry.py
+    ├── exceptions.py
+    │
+    └── tests/

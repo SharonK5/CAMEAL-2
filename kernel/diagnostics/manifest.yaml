@@ -1,0 +1,44 @@
+## 📄 `kernel/diagnostics/manifest.yaml`
+
+```yaml
+# kernel/diagnostics/manifest.yaml
+name: diagnostics
+version: 1.0.0
+description: Kernel observability (health, metrics, tracing, logging)
+author: CAMEAL Kernel Team
+kernel_compatibility: ">=1.0.0"
+
+providers: []
+engines: []
+workflows: []
+schedulers: []
+
+dependencies:
+  - kernel.lifecycle
+  - kernel.events
+  - kernel.providers.telemetry
+
+# Public API exports
+exports:
+  - Diagnostics
+  - DiagnosticsLifecycle
+  - DiagnosticsRegistry
+
+# Events consumed
+events:
+  consumed:
+    - component.health
+    - workflow.started
+    - workflow.completed
+    - job.started
+    - job.completed
+    - log.*
+    - "*"  # all other events are captured as generic traces/logs
+
+# Events emitted
+events:
+  emitted:
+    - diagnostics.health
+    - diagnostics.metrics
+    - diagnostics.trace
+    - diagnostics.log

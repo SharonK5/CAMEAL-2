@@ -1,10 +1,16 @@
 # kernel/container/container.py
+"""
+Main dependency injection container for the CAMEAL Kernel.
+
+Provides registration, resolution, and lifetime management.
+"""
+
 from typing import Any, Callable, List, Optional, Tuple, Type, TypeVar, Union
 from contextlib import contextmanager
 
 from .cache import Cache
 from .dependency import Dependency
-from .exceptions import StateError
+from .exceptions import ScopeError, StateError
 from .registry import Registry
 from .registration import Registration
 from .resolver import Resolver
@@ -17,6 +23,21 @@ T = TypeVar('T')
 
 
 class Container(Lifecycle):
+    """
+    Dependency injection container for the CAMEAL Kernel.
+
+    Supports:
+        - Singleton, request‑scoped, and transient lifetimes.
+        - Constructor injection with automatic resolution.
+        - Circular dependency detection.
+        - Request‑scoped caching.
+        - Named and tagged registrations.
+        - Lifecycle integration.
+
+    The container is thread‑safe for singleton creation and request‑scoped
+    caching. Registrations are immutable after the container is frozen.
+    """
+
     def __init__(self) -> None:
         super().__init__()
         self._registry = Registry()
@@ -73,6 +94,10 @@ class Container(Lifecycle):
             raise StateError(f"Cannot transition from {self._container_state} to {to_state}")
         self._container_state = to_state
 
+    def _on_health(self) -> HealthStatus:
+        """Return the health status of the container."""
+        return self.health()
+
     # ------------------------------------------------------------------
     # Registration API
     # ------------------------------------------------------------------
@@ -91,8 +116,13 @@ class Container(Lifecycle):
             raise StateError(f"Cannot register after state {self._container_state}")
         self._registration.register(interface, implementation, scope, name, tags, is_factory, lazy)
 
-    def register_singleton(self, interface: Type[T], instance: T, name: Optional[str] = None, tags: Tuple[str, ...] = ()) -> None:
-        self.register(interface, lambda: instance, Scope.SINGLETON, name, tags)
+    def register_singleton(self, interface: Type[T], instance: T) -> None:
+        """
+        Register an existing instance as a singleton.
+
+        This is a convenience method for registering pre‑constructed instances.
+        """
+        self._registry.register(Dependency(interface, lambda: instance, Scope.SINGLETON))
 
     # ------------------------------------------------------------------
     # Resolution API

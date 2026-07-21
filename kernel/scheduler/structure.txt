@@ -1,0 +1,54 @@
+kernel/scheduler/
+├── README.md
+├── ARCHITECTURE.md
+├── DESIGN.md
+├── API.md
+├── manifest.yaml
+├── __init__.py
+│
+├── base/
+│   ├── __init__.py
+│   ├── job.py
+│   ├── trigger.py
+│   ├── schedule.py
+│   ├── models.py
+│   ├── states.py          # NEW: explicit job states
+│   └── exceptions.py
+│
+├── registry/
+│   ├── __init__.py
+│   └── job_registry.py
+│
+├── planner/               # NEW: time-based execution planning
+│   ├── __init__.py
+│   └── scheduler_planner.py
+│
+├── executor/
+│   ├── __init__.py
+│   ├── job_executor.py
+│   ├── workflow_executor.py
+│   └── retry_executor.py
+│
+├── triggers/
+│   ├── __init__.py
+│   ├── cron_trigger.py
+│   ├── interval_trigger.py
+│   ├── once_trigger.py
+│   └── event_trigger.py
+│
+├── events/
+│   ├── __init__.py
+│   └── scheduler_events.py
+│
+├── scheduler.py
+├── lifecycle.py
+│
+└── tests/
+    ├── __init__.py
+    ├── test_job.py
+    ├── test_trigger.py
+    ├── test_registry.py
+    ├── test_scheduler.py
+    ├── test_cron.py
+    ├── test_executor.py
+    └── test_planner.py

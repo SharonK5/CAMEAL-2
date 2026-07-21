@@ -1,0 +1,118 @@
+name: cameal.kernel.events
+
+display_name: CAMEAL Kernel Events
+
+description: >
+  Event-driven communication subsystem for the CAMEAL Kernel.
+  Provides publish/subscribe messaging, execution pipelines,
+  event dispatching, validation, middleware, diagnostics,
+  and asynchronous communication between runtime components.
+
+version: 1.0.0
+api_version: 1.0
+
+status: stable
+
+type: kernel-subsystem
+
+owner: CAMEAL Project
+
+license: Apache-2.0
+
+python: ">=3.11"
+
+dependencies:
+  - cameal.kernel.lifecycle
+  - cameal.kernel.container
+
+optional_dependencies: []
+
+exports:
+  - Event
+  - EventBus
+  - Publisher
+  - Subscriber
+  - Subscription
+  - EventContext
+
+internal_components:
+  - Dispatcher
+  - Registry
+  - Validator
+  - Middleware
+  - Filters
+  - ExecutionPipeline
+  - Diagnostics
+  - Serializer
+
+capabilities:
+  - publish
+  - subscribe
+  - dispatch
+  - middleware
+  - event_filtering
+  - event_validation
+  - execution_pipeline
+  - diagnostics
+  - tracing
+  - metrics
+  - synchronous_execution
+  - asynchronous_execution
+
+supported_scopes:
+  - kernel
+  - request
+  - workflow
+
+lifecycle:
+  - initialize
+  - validate
+  - boot
+  - start
+  - execute
+  - stop
+  - shutdown
+  - dispose
+
+thread_safe: true
+
+async_supported: true
+
+configuration:
+  max_subscribers_per_event: 1000
+  max_pipeline_depth: 64
+  enable_tracing: true
+  enable_metrics: true
+  enable_validation: true
+
+events:
+  publishes:
+    - RequestReceived
+    - ContextCreated
+    - WorkflowSelected
+    - ExecutionStarted
+    - ExecutionCompleted
+    - ExecutionFailed
+
+  subscribes: []
+
+documentation:
+  readme: README.md
+  architecture: ARCHITECTURE.md
+  design: DESIGN.md
+  api: API.md
+  execution_flow: EXECUTION_FLOW.md
+
+tests:
+  directory: tests/
+
+compatibility:
+  kernel: ">=1.0.0"
+
+tags:
+  - kernel
+  - runtime
+  - events
+  - orchestration
+  - pubsub
+  - messaging

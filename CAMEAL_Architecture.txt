@@ -1,0 +1,35 @@
+cameal/
+│
+├── kernel/                     ← Runtime operating system
+│
+├── context/                    ← Context Engine
+│
+├── repository/                 ← Knowledge repositories
+│
+├── security/                   ← Security Framework
+│
+├── reasoning/                  ← Reasoning Engine
+│
+├── monitoring/                 ← Monitoring Engine
+│
+├── evaluation/                 ← Evaluation Engine
+│
+├── accountability/             ← Accountability Engine
+│
+├── learning/                   ← Learning Engine
+│
+├── adaptation/                 ← Adaptive Engine
+│
+├── rag/                        ← Retrieval Engine
+│
+├── llm/                        ← Language Model Layer
+│
+├── ml/                         ← Machine Learning Layer
+│
+├── analytics/
+│
+├── governance/
+│
+├── drafting/
+│
+└── interfaces/

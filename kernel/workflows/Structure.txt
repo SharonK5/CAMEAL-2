@@ -1,0 +1,59 @@
+kernel/workflows/
+├── README.md
+├── ARCHITECTURE.md
+├── DESIGN.md
+├── API.md
+├── manifest.yaml
+├── __init__.py
+│
+├── base/
+│   ├── __init__.py
+│   ├── workflow.py
+│   ├── interface.py
+│   ├── models.py
+│   └── exceptions.py
+│
+├── parser/
+│   ├── __init__.py
+│   ├── yaml_parser.py
+│   ├── json_parser.py
+│   └── validator.py
+│
+├── registry/
+│   ├── __init__.py
+│   └── workflow_registry.py
+│
+├── planner/
+│   ├── __init__.py
+│   ├── planner.py
+│   ├── dependency_resolver.py
+│   └── optimizer.py
+│
+├── executor/
+│   ├── __init__.py
+│   ├── executor.py
+│   ├── stage_executor.py
+│   └── result_collector.py
+│
+├── lifecycle/
+│   ├── __init__.py
+│   └── workflow_lifecycle.py
+│
+├── events/
+│   ├── __init__.py
+│   ├── workflow_events.py
+│   └── handlers.py
+│
+├── examples/
+│   ├── simple_workflow.yaml
+│   ├── ingestion_workflow.yaml
+│   └── analysis_workflow.yaml
+│
+└── tests/
+    ├── __init__.py
+    ├── test_parser.py
+    ├── test_registry.py
+    ├── test_planner.py
+    ├── test_executor.py
+    ├── test_validator.py
+    └── test_lifecycle.py

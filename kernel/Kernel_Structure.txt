@@ -1,0 +1,106 @@
+kernel/
+
+├── README.md
+├── ARCHITECTURE.md
+├── DESIGN.md
+├── manifest.yaml
+
+├── __init__.py
+
+├── kernel.py
+├── bootstrap.py
+
+│
+├── container/
+│   ├── __init__.py
+│   ├── container.py
+│   ├── dependency.py
+│   ├── providers.py
+│   └── scopes.py
+
+│
+├── lifecycle/
+│   ├── __init__.py
+│   ├── lifecycle.py
+│   ├── lifecycle_state.py
+│   ├── health.py
+│   ├── startup.py
+│   └── shutdown.py
+
+│
+├── managers/
+│   ├── __init__.py
+│   ├── engine_manager.py
+│   ├── repository_manager.py
+│   ├── plugin_manager.py
+│   ├── workflow_manager.py
+│   ├── context_manager.py
+│   └── configuration_manager.py
+
+│
+├── orchestration/
+│   ├── __init__.py
+│   ├── orchestrator.py
+│   ├── dispatcher.py
+│   ├── execution_plan.py
+│   └── pipeline.py
+
+│
+├── events/
+│   ├── __init__.py
+│   ├── event_bus.py
+│   ├── events.py
+│   ├── subscribers.py
+│   ├── publishers.py
+│   └── execution_pipeline.py
+
+│
+├── plugins/
+│   ├── __init__.py
+│   ├── manifest.py
+│   ├── registry.py
+│   ├── discovery.py
+│   ├── loader.py
+│   └── validator.py
+
+│
+├── registry/
+│   ├── __init__.py
+│   ├── engine_registry.py
+│   ├── service_registry.py
+│   ├── provider_registry.py
+│   └── workflow_registry.py
+
+│
+├── models/
+│   ├── __init__.py
+│   ├── request.py
+│   ├── response.py
+│   ├── execution_context.py
+│   ├── execution_result.py
+│   └── runtime_state.py
+
+│
+├── scheduler/
+│   ├── __init__.py
+│   ├── scheduler.py
+│   ├── task.py
+│   └── trigger.py
+
+│
+├── diagnostics/
+│   ├── __init__.py
+│   ├── metrics.py
+│   ├── profiler.py
+│   ├── tracing.py
+│   └── diagnostics.py
+
+│
+├── routing/
+│   ├── __init__.py
+│   ├── router.py
+│   ├── route.py
+│   └── middleware.py
+
+│
+└── exceptions.py
